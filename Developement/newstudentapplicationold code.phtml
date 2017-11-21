@@ -1,0 +1,533 @@
+<form onsubmit="return fnValidateForm()" enctype="multipart/form-data" dojoType="dijit.form.Form" id="mylobjStudentApplicationForm" action="" method="POST"  name= "mylobjStudentApplicationForm">
+	<fieldset>
+	<legend><?php echo $this->translate("Student").' '.$this->translate("Application");?></legend>
+					<div id="contentArea">
+					<div class="section" id="content1">
+						<table width="100%" border="0" cellspacing="0" cellpadding="10">
+							<tr>
+								<th colspan ="4"><?php echo $this->translate("Personal").' '.$this->translate("Details");?></th>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("First").' '.$this->translate("Name");?> <span class="reqMark">*</span>&nbsp;&nbsp;</td>
+								<td><?php echo $this->lobjStudentApplicationForm->FName;?>
+										<?php echo $this->lobjStudentApplicationForm->IDApplication;?>
+										<input type="Hidden" id="availRes" value="" />
+										<?php echo $this->lobjStudentApplicationForm->UpdDate;?>
+										<?php echo $this->lobjStudentApplicationForm->UpdUser;?>
+										<?php echo $this->lobjStudentApplicationForm->MultiBedIds;?>
+								</td>
+								
+								<td><?php echo $this->translate("Last").' '.$this->translate("Name");?><span class="reqMark">*</span>&nbsp;&nbsp;</td>
+								<td><?php echo $this->lobjStudentApplicationForm->LName ;?>
+									<?php echo $this->lobjStudentApplicationForm->Registered;?>
+									<?php echo $this->lobjStudentApplicationForm->Offered;?>
+									<?php echo $this->lobjStudentApplicationForm->Accepted;?>
+									<?php echo $this->lobjStudentApplicationForm->ApplicationType;?>
+									<?php echo $this->lobjStudentApplicationForm->ApplicationDate;?>
+									</td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Second").' '.$this->translate("Name");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->MName;?><span id="errLName" class="errors"></span></td>
+								<td><?php echo $this->translate("Third").' '.$this->translate("Name");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ThirdName;?><span id="errLName" class="errors"></span></td>
+								
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Fourth").' '.$this->translate("Name");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->FourthName;?><span id="errLName" class="errors"></span></td>
+								<td><?php echo $this->translate("Full").' '.$this->translate("Name");?><span class="reqMark">*</span>&nbsp;&nbsp;</td>
+								<td><?php echo $this->lobjStudentApplicationForm->FullArabicName;?><span id="errLName" class="errors"></span></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Full").' '.$this->translate("Name").' '."(In Arabic)";?><span class="reqMark">*</span>&nbsp;&nbsp;</td>
+								<td><?php echo $this->lobjStudentApplicationForm->FullName;?><span id="errLName" class="errors"></span></td>
+								<td><?php echo $this->translate("Type").' '.$this->translate("of").' '.$this->translate("ID");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->IdType;?><span id="errDateOfBirth" class="errors"></span>
+								</br>
+								</br><?php echo $this->translate("Place").' '.$this->translate("of").' '.$this->translate("Issue");?><span class="reqMark">*</span>
+									 <?php echo $this->lobjStudentApplicationForm->IssuePlace;?><span id="errDateOfBirth" class="errors"></span>
+								</br><?php echo $this->translate("Date").' '.$this->translate("of").' '.$this->translate("Issue");?><span class="reqMark">*</span>
+									 <?php echo $this->lobjStudentApplicationForm->IssueDate;?><span id="errDateOfBirth" class="errors"></span>
+								</br><?php echo $this->translate("Date").' '.$this->translate("of").' '.$this->translate("Expiry");?><span class="reqMark">*</span>
+									 <?php echo $this->lobjStudentApplicationForm->ExpiryDate;?><span id="errDateOfBirth" class="errors"></span>
+								</td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Personal ID");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PersonalID;?>
+								<td><?php echo $this->translate("Citizenship");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Nationality;?><span id="errNationality" class="errors"></span></td>
+							</td>
+							<tr>
+								<td><?php echo $this->translate("Gender");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Gender;?></td>
+								<td><?php echo $this->translate("Contact Number");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ContactNumber;?></td>
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Email");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Email;?></td>
+								<td><?php echo $this->translate("Program Level/Award");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->AwardLevel;?></td>
+				
+							</tr>
+							<!--<tr>
+								<td><?php echo $this->translate("Religion");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Religion;?></td>
+								<td><?php echo $this->translate("Blood Group");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->BloodGroup;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("No").' '.$this->translate("Of").' '.$this->translate("Children");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->NoOfChildren;?></td>
+								<td><?php echo $this->translate("IC").' '.$this->translate("Number");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ICNumber;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Sponsor");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->idsponsor;?></span></td>
+								<td><?php echo $this->translate("Active");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Active;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Extra").' '.$this->translate("Curricular").' '.$this->translate("Activities");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->othercurricularactivity;?></td>
+								<td><?php echo $this->translate("Hobbies");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->hobbies;?></td>
+							</tr>-->
+							
+							<tr>
+								<td colspan = "4" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-one','tab-two')">
+								</td>
+							</tr>	
+						</table>
+					</div>
+					<div class="section" id="content2">
+						<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+							<th colspan ="4"><?php echo $this->translate("Address").' '.$this->translate("Details");?></th>
+							</tr>	
+							<tr>
+								<td><?php echo $this->translate("Residence In").' '.$this->translate("Jakarta");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->TypeOfResidence;?><span id="errTypeOfResidence" class="errors"></span></td>
+								<td></td>
+								<td></td>
+							</tr>		
+							<tr>
+								<td><?php echo $this->translate("Permanent").' '.$this->translate("Address");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PermAddressDetails;?><span id="errPermAddressDetails" class="errors"></span></td>
+								<td><?php echo $this->translate("Permanent").' '.$this->translate("Country");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PermCountry;?><span id="errPermCountry" class="errors"></span></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Permanent").' '.$this->translate("State");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PermState;?><span id="errPermState" class="errors"></span></td>
+								<td><?php echo $this->translate("Permanent").' '.$this->translate("City");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PermCity;?><span id="errPermCity" class="errors"></span></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Permanent").' '.$this->translate("Zip");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PermZip;?><span id="errPermZip" class="errors"></span></td>										
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Same As").' '.$this->translate("Above");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->SameCorrespAddr;?></td>										
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Correspondence").' '.$this->translate("Address");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CorrsAddressDetails;?></td>
+								<td><?php echo $this->translate("Correspondence").' '.$this->translate("Country");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CorrsCountry;?></td>
+								
+								
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Correspondence").' '.$this->translate("State");?></td>						
+								<td><?php echo $this->lobjStudentApplicationForm->CorrsState;?></td>
+								<td><?php echo $this->translate("Correspondence").' '.$this->translate("City");?></td>
+								<td> <?php echo $this->lobjStudentApplicationForm->CorrsCity;?></td>
+								
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Correspondence").' '.$this->translate("Zip");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CorrsZip;?></td>
+								<td><?php echo $this->translate("Home").' '.$this->translate("Phone");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->HomePhonecountrycode;?><?php echo $this->lobjStudentApplicationForm->HomePhonestatecode;?><?php echo $this->lobjStudentApplicationForm->HomePhone;?></td>
+								
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Cell").' '.$this->translate("Phone");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CellPhonecountrycode;?><?php echo $this->lobjStudentApplicationForm->CellPhone;?></td>
+								<td><?php echo $this->translate("Fax");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Faxcountrycode;?><?php echo $this->lobjStudentApplicationForm->Faxstatecode;?><?php echo $this->lobjStudentApplicationForm->Fax;?></td>
+								
+							</tr>
+							<tr>
+							    <td><?php echo $this->translate("Email").' '.$this->translate("Address");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->EmailAddress;?><span id="errEmailAddress" class="errors"></span></td>
+							
+							</tr>
+							<tr>
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-two','tab-one')"></td>
+								<td colspan = "2" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-two','tab-three')">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="section" id="content3">	
+						<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+								<th colspan ="4"><?php echo $this->translate("International").' '.$this->translate("Student").' '.$this->translate("Details");?></th>
+							</tr>				
+							<tr>		
+								<td><?php echo $this->translate("International").' '.$this->translate("Student");?> <?php echo $this->lobjStudentApplicationForm->InternationalStd;?><span class="reqMark"></span></td>
+							</tr>
+						</table>
+						<span id="ShowPassPortDetails" style="display:none">
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>	
+								<td><?php echo $this->translate("Passport").' '.$this->translate("No");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PPNos;?><span id="errPPNos"></span></td>
+								<td><?php echo $this->translate("Passport").' '.$this->translate("Issue").' '.$this->translate("Date");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PPIssueDt;?><span id="errPPIssueDt"></span></td>					
+							</tr>								
+							<tr>
+								<td><?php echo $this->translate("Passport").' '.$this->translate("Expiry").' '.$this->translate("Date");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PPExpDt;?><span id="errPPExpDt"></span></td>
+								<?php if($this->PPField1 != ""){ ?>
+									<td><?php echo $this->translate($this->PPField1);?><span class="reqMark"></span></td>
+									<td><?php echo $this->lobjStudentApplicationForm->PPField1;?><span id="errPPField1"></span></td>
+								<?php }else {?>
+									<td></td>
+									<td></td>
+								<?php }?>	
+							</tr>
+								<tr>					
+										<td><?php echo $this->translate("Passport").' '.$this->translate("Issue").' '.$this->translate("Place");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->PPField2;?><span id="errPPField2"></span></td>
+										<td><?php echo $this->translate("Issuing").' '.$this->translate("Authority");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->PPField3;?><span id="errPPField3"></span></td>
+								</tr><!--
+								<tr>					
+										<td><?php echo $this->translate("Visa No");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->PPField4;?><span id="errPPField4"></span></td>
+										<td><?php echo $this->translate("Visa Type");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->PPField5;?><span id="errPPField5"></span></td>
+								</tr>
+								--><tr>						
+										<td><?php echo $this->translate("Visa No");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->VisaDetailField1;?><span id="errVisaDetailField1"></span></td>
+										<td><?php echo $this->translate("Visa Type");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->VisaDetailField2;?><span id="errVisaDetailField2"></span></td>
+								</tr><!--
+
+								<tr>					
+										<td><?php echo $this->translate("$this->VisaDetailField3");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->VisaDetailField3;?><span id="errVisaDetailField3"></span></td>
+										<td><?php echo $this->translate("$this->VisaDetailField4");?><span class="reqMark"></span></td>
+										<td><?php echo $this->lobjStudentApplicationForm->VisaDetailField4;?><span id="errVisaDetailField4"></span></td>
+								</tr>
+
+								<tr>	
+									<td><?php echo $this->translate("$this->VisaDetailField5");?><span class="reqMark"></span></td>
+									<td><?php echo $this->lobjStudentApplicationForm->VisaDetailField5;?><span id="errVisaDetailField5"></span></td>
+									<td></td>
+									<td></td>
+								</tr>
+							-->
+							
+							</table>
+						</span>
+						
+
+						<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-three','tab-two')"></td>
+								<td colspan = "2" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-three','tab-four')">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="section" id="content4">	
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+								<tr>
+									<th colspan ="4"><?php echo $this->translate("Branch").' '.$this->translate("Details");?></th>
+								</tr>	
+							<tr>
+								<td><?php echo $this->translate("Branch Name");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->idCollege;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Program");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->IDCourse;?><span id="errIDCourse" class="errors"></span></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Placement").' '.$this->translate("Test");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->IdPlacementtest;?></td>	
+								<td ><span id = "timesr"></span></td>
+								<td><span id = "timesr1"></td>																	
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Please").' '.$this->translate("Enter").' '.$this->translate("Your").' '.$this->translate("Student Id")."<br/>".$this->translate("If").' '.$this->translate("Provided").' '.$this->translate("By").' '.$this->translate("College");?></td>
+								<td><?php echo $this->lobjStudentApplicationForm->StudentCollegeId;?></td>
+								<td></td>
+								<td></td>
+							</tr>
+							</table>
+
+							
+						<span id="ShowPassPortDetails2" style="display:none">
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+								<tr>
+									<th colspan ="4"><?php echo $this->translate("International Entry").' '.$this->translate("Details");?></th>
+								</tr>	
+								<tr>	
+									<td colspan ="2"><?php echo $this->translate("Plcament").' '.$this->translate("Test");?><span class="reqMark"><?php echo $this->lobjStudentApplicationForm->InternationalPlacementTest;?></span></td>
+
+									<td colspan ="2"><?php echo $this->translate("Certification");?><?php echo $this->lobjStudentApplicationForm->InternationalCertification;?></td>
+					
+								</tr>	
+							</table>
+						</span>
+								
+								
+						<span id="ShowPassPortDetails1" style="display:block">
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+								<tr>
+									<th colspan ="2"><?php echo $this->translate("Local Entry").' '.$this->translate("Details");?></th>
+								</tr>	
+								<tr>	
+									<td><?php echo $this->translate("Plcament").' '.$this->translate("Test");?><span class="reqMark"><?php echo $this->lobjStudentApplicationForm->LocalPlacementTest;?></span></td>
+									<td><?php echo $this->translate("Certification");?><?php echo $this->lobjStudentApplicationForm->LocalCertification;?></td>
+								</tr>		
+							</table>
+						</span>
+							
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">					
+							
+							<tr>
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-four','tab-three')"></td>
+								<td colspan = "2" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-four','tab-five')">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="section" id="content5">	
+							<table class="table" width="100%" cellpadding="5" cellspacing="1" >
+								<tr>
+									<th colspan ="4"><?php echo $this->translate("Education").' '.$this->translate("Details");?></th>
+								</tr>									
+								
+								<tr>
+									<td><?php echo $this->translate("Type Of").' '.$this->translate("School");?><span class="reqMark"></span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->TypeOfSchool;?></td>
+									<td><?php echo $this->translate("Status Of").' '.$this->translate("School");?><span class="reqMark"></span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->StatusOfSchool;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Institution").' '.$this->translate("Name");?><span class="reqMark">*</span></td>	
+									<td id="institution_row1"><?php echo $this->lobjStudentApplicationForm->InstitutionName;?></td>
+									<td><?php echo $this->translate("University").' '.$this->translate("Name");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->UniversityName;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("International").' '.$this->translate("Student");?><span class="reqMark"></span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->TypeOfStud;?></td>
+									<td></td>	
+									<td></td>
+								</tr>
+										
+								<tr >
+									<td><?php echo $this->translate("Home Town").' '.$this->translate("School");?><span class="reqMark"></span></td>	
+									<td id="field2" style="display:block"><?php echo $this->lobjStudentApplicationForm->HomeTownSchoolDD;?></td>
+									<td id="field3" style="display:none"><?php echo $this->lobjStudentApplicationForm->HomeTownSchoolTB;?></td>
+									<td><?php echo $this->translate("Credit").' '.$this->translate("Transfer");?><span class="reqMark"></span></td>	
+									<td id="field4" style="display:block"><?php echo $this->lobjStudentApplicationForm->CreditTransferFromDD;?></td>
+									<td id="field5" style="display:none"><?php echo $this->lobjStudentApplicationForm->CreditTransferFromTB;?></td>	
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Study").' '.$this->translate("Place");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->StudyPlace;?></td>
+									<td><?php echo $this->translate("Major").' '.$this->translate("Field").' '.$this->translate("of").' '.$this->translate("Study");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->MajorFiledOfStudy;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Year").' '.$this->translate("Of").' '.$this->translate("Study").' '.$this->translate("From");?><span class="reqMark">*</span></td>
+									<td><?php echo $this->lobjStudentApplicationForm->YearOfStudyFrom;?></td>
+									<td><?php echo $this->translate("Year").' '.$this->translate("Of").' '.$this->translate("Study").' '.$this->translate("To");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->YearOfStudyTo;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Degree").' '.$this->translate("Type");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->DegreeType;?></td>
+									<td><?php echo $this->translate("Grade").'/'.$this->translate("CGPA").' '.$this->translate("of").' '.$this->translate("Study");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->GradeOrCGPA;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Subject");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->SubjectId;?></td>
+									<td><?php echo $this->translate("Marks");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->SubjectMark;?></td>
+								</tr>
+								<tr>
+									<td><?php echo $this->translate("Program").' '.$this->translate("Check List");?><span class="reqMark">*</span></td>	
+									<td><?php echo $this->lobjStudentApplicationForm->ProgCheckListName;?></td>
+									<td></td>	
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan = "4" align = "right"><?php echo $this->lobjStudentApplicationForm->Add;?></td>
+								</tr>
+							</table>	
+						<table id="hor"  class="table" width="100%" cellpadding="5" cellspacing="1">
+						<tr>
+                            
+							<th><?php echo $this->translate("Institution").' '.$this->translate("Name");?></th>
+							<th><?php echo $this->translate("University").' '.$this->translate("Name")?></th>
+							<th><?php echo $this->translate("Study").' '.$this->translate("Place")?></th>
+							<th><?php echo $this->translate("Major").' '.$this->translate("Field").' '.$this->translate("of").' '.$this->translate("Study");?></th>	
+							<th><?php echo $this->translate("Year").' '.$this->translate("Of").' '.$this->translate("Study").' '.$this->translate("From");?></th>
+							<th><?php echo $this->translate("Year").' '.$this->translate("Of").' '.$this->translate("Study").' '.$this->translate("To");?></th>	
+							<th><?php echo $this->translate("Degree").' '.$this->translate("Type");?></th>	
+							<th><?php echo $this->translate("Grade").'/'.$this->translate("CGPA").' '.$this->translate("of").' '.$this->translate("Study");?></th>
+							<th><?php echo $this->translate("Delete")?></th>
+							
+						</tr>
+					</table>
+					
+		
+					<table  class="table" width="100%" cellpadding="5" cellspacing="1">
+						<tr>							
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-five','tab-four')"></td>
+								<td colspan = "2" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-five','tab-six')">
+								</td>
+					  </tr>
+					</table>
+					</div>	
+					
+					
+					<!--<div dojoType="dijit.layout.ContentPane" id="tab-six" title="<?php echo $this->translate("Upload").' '.$this->translate("Details")?>" style="height:270px;width:99%;overflow:auto">	
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+	                            <td ><?php echo $this->translate("Images");?><span class="reqMark">*(<?php echo $this->upload_mb;?>MB)</span></td>
+	                            <td>
+	                            	<div class="cabinet" > 
+	                           			<input accept="gif|jpeg|jpg" style="height: 30px;width: auto;color:#666666;font-size:11px;opacity:0" class="multi" type="file" name="uploadedfiles[]" id="uploadfile" label="Upload" />
+	                           			<div id="filelist"></div>
+	                           		</div>
+	                           	</td>
+	                        </tr>  
+	                        
+							<tr>
+	                            <td ><?php echo $this->translate("Documents");?><span class="reqMark">*(<?php echo $this->upload_mb;?>MB)</span></td>
+	                            <td>
+	                            	<div class="cabinet" > 
+	                           			<input accept="pdf|bmp|doc|docx|xls|xlsx|txt|png|rtf|tiff|zip" style="height: 30px;width: auto;color:#666666;font-size:11px;opacity:0" class="multi" type="file" name="uploadeddocuments[]" id="uploaddocuments" label="Upload" />
+	                           			<div id="filelist1"></div>
+	                           		</div>
+	                           	</td>
+	                        </tr> 
+							<tr>
+								<td><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-six','tab-five')"></td>
+								<td align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-six','tab-seven')">
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div dojoType="dijit.layout.ContentPane" id="tab-seven" title="<?php echo $this->translate("Other").' '.$this->translate("Details")?>" style="height:200px;width:99%;overflow:auto">	
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+									<th colspan ="4"><?php echo $this->translate("Other").' '.$this->translate("Details");?></th>
+							</tr>	
+							<tr>
+								<td><?php echo $this->translate("Referance");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Referrel;?></span></td>			
+								<td><?php echo $this->translate("Jacket Size");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->JacketSize;?></td>
+							</tr>
+							<tr>
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-seven','tab-six')"></td>
+								<td colspan = "2" align = "right">
+									<input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Next");?> name = "Next" Value = "<?php echo $this->translate("Next");?>" onclick = "fnToggleTabs('Next','tab-seven','tab-eight')">
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					
+					
+					<div dojoType="dijit.layout.ContentPane" id="tab-eight" title="<?php echo $this->translate("Parent").' '.$this->translate("Details")?>" style="height:200px;width:99%;overflow:auto">	
+							<table class="table" width="100%" cellpadding="5" cellspacing="1">
+							<tr>
+									<th colspan ="4"><?php echo $this->translate("PArent").' '.$this->translate("Details");?></th>
+							</tr>	
+							<tr>
+								<td><?php echo $this->translate("Father's Name");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->NameOfFather;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Mother's Name");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->NameOfMother;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Father's Status");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CircOfFather;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Mother's Status");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->CircOfMother;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Parent Address");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ParentAddressDetails;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Pin Code");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PostCode;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Parent City");?><span class="reqMark">*</span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->City;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Telephone");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Telephone;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Hand Phone");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->Handphone;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Parent Email");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->PEmail;?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this->translate("Parent Job");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ParentJob;?><span id="erridCollege" class="errors"></span></td>			
+								<td><?php echo $this->translate("Parent Education");?><span class="reqMark"></span></td>
+								<td><?php echo $this->lobjStudentApplicationForm->ParentEducation;?></td>
+							</tr>
+							<tr>
+								<td colspan = "2"><input type = "button" class="NormalBtn"  dojoType=dijit.form.Button label =  <?php echo $this->translate("Back");?> name = "Back" Value = "<?php echo $this->translate("Back");?>" onclick = "fnToggleTabs('Back','tab-eight','tab-seven')"></td>
+								<td colspan = "2" align = "right"><?php echo $this->lobjStudentApplicationForm->Save;?></td>
+							</tr>
+						</table>
+					</div>	
+
+				</div>
+			</div>
+			</td>
+		</tr>
+		</table>
+	</div>	
+	<table class="table" width="100%" cellpadding="5" cellspacing="1">
+	<tr>       
+        <td colspan = "4" align = "right">
+			<input type="button" class="NormalBtn" dojotype="dijit.form.Button" label="<?php echo $this->translate("Back"); ?>" onclick="window.location.href='<?php echo $this->url(array('module'=>'application','controller'=>'manualapplication', 'action'=>'index'),'default',true);?>';" />	
+       </td> 
+	</tr>
+	</table>-->
+	</div>
+	</div>
+</fieldset>		
+</form>

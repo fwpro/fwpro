@@ -1,0 +1,21 @@
+<tr>
+	<th colspan = "4"><?php echo $this->translate("Semester").' '.$this->translate("Code").' '.$this->translate("Generation").' '.$this->translate("Details");?></th>
+</tr>			
+<tr>						
+	<td ><?php echo $this->translate("Code").' '.$this->translate("Generation").' '.$this->translate("Type");?> <span class="reqMark"></span></td>
+	<td><?php echo $this->lobjInitialConfigForm->SemesterCodeType;?></td>
+	<td id="fieldrows3" style="display:block;"><?php echo $this->translate("Seperator");?> <span class="reqMark"></span></td>
+	<td id="fieldrows4" style="display:block;"><?php echo $this->lobjInitialConfigForm->SemesterSeparator;?></td>
+</tr>
+					   <tr id="fieldrows1" style="display:block;">						
+						<td ><?php echo $this->translate("Code").' '.$this->translate("Field 1");?> <span class="reqMark"></span></td>
+						<td><?php echo $this->lobjInitialConfigForm->SemesterCodeField1;?><span id="Semestertextspan1" style="display:none;"> &nbsp; <?php echo $this->lobjInitialConfigForm->SemesterCodeText1;?></span></td>
+						<td ><?php echo $this->translate("Code").' '.$this->translate("Field 2");?> <span class="reqMark"></span></td>
+						<td><?php echo $this->lobjInitialConfigForm->SemesterCodeField2;?><span id="Semestertextspan2" style="display:none;"> &nbsp; <?php echo $this->lobjInitialConfigForm->SemesterCodeText2;?></span></td>
+					</tr>
+					<tr id="fieldrows2" style="display:block;">						
+						<td ><?php echo $this->translate("Code").' '.$this->translate("Field 3");?> <span class="reqMark"></span></td>
+						<td><?php echo $this->lobjInitialConfigForm->SemesterCodeField3;?><span id="Semestertextspan3" style="display:none;"> &nbsp; <?php echo $this->lobjInitialConfigForm->SemesterCodeText3;?></span></td>
+						<td ><?php echo $this->translate("Code").' '.$this->translate("Field 4");?> <span class="reqMark"></span></td>
+						<td><?php echo $this->lobjInitialConfigForm->SemesterCodeField4;?><span id="Semestertextspan4" style="display:none;"> &nbsp; <?php echo $this->lobjInitialConfigForm->SemesterCodeText4;?></span></td>
+					</tr>

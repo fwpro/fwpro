@@ -1,0 +1,463 @@
+<?php
+//get locale
+
+
+$registry = Zend_Registry::getInstance();
+$locale = $registry->get('Zend_Locale');
+$this->locale = $locale->toString();	
+$auth = Zend_Auth::getInstance();
+$larrmodules = array(); 
+$larrcontrollers = array();
+/*
+ * Get the roles depending on user role 
+ */
+$lobjrolesmodel = new GeneralSetup_Model_DbTable_Roles();
+$larrrolemodulesresultset = $lobjrolesmodel->fngetRoleResourcesModules($auth->getIdentity()->IdRole);
+$larrrolecontrollersresultset = $lobjrolesmodel->fngetRoleResourcesControllers($auth->getIdentity()->IdRole);
+
+/*
+ * array contains all the modules of the project 
+ */
+$larrexistingmodules = array('generalsetup','application','registration','records','studentfinance','studentaffairs','examination','reports');
+
+foreach($larrrolemodulesresultset as $larrrolemodulesresult)
+	$larrmodules[] = $larrrolemodulesresult['Module'];
+
+foreach($larrrolecontrollersresultset as $larrrolecontrollersresult)
+	$larrcontrollers[] = $larrrolemodulesresult['Controller'];
+	
+if($locale == 'ar_YE'){
+	$this->direction = "rtl";
+	$this->float = "right";
+	$locale = 'ar';
+}elseif($locale == 'en_US'){
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}else {
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}
+$this->gobjsessionsis = Zend_Registry::get('sis');
+$lobjinitialconfigModel = new GeneralSetup_Model_DbTable_Initialconfiguration(); 
+$larrInitialSettings = $lobjinitialconfigModel->fnGetInitialConfigDetails($this->gobjsessionsis->idUniversity);
+$this->College = empty($larrInitialSettings['CollegeAliasName']) ? "College":$larrInitialSettings['CollegeAliasName'];
+$this->Department =  empty($larrInitialSettings['DepartmentAliasName']) ? "Department":$larrInitialSettings['DepartmentAliasName'];
+$this->Subject = empty($larrInitialSettings['SubjectAliasName']) ? "Subject":$larrInitialSettings['SubjectAliasName'];
+$this->Program = empty($larrInitialSettings['ProgramAliasName']) ? "Program":$larrInitialSettings['ProgramAliasName'];
+$this->Branch = empty($larrInitialSettings['BranchAliasName']) ? "Branch":$larrInitialSettings['BranchAliasName'];
+$this->Landscape = empty($larrInitialSettings['LandscapeAliasName']) ? "Landscape":$larrInitialSettings['LandscapeAliasName'];
+$this->language = $larrInitialSettings['Language'];
+
+
+
+?>
+<?php  echo $this->doctype(); ?>
+<!--[if IE]>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->locale; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+
+<!-- ///////////////////////// DOJO ////////////////////////// -->
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+
+
+
+
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_<?php echo $locale;?>.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/claro/EnhancedGrid.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/Pagination.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/plugins/resources/css/LocalImage.css" />
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/layout.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/simpletree.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/topmenu.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/style.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/left-menu.css'); ?>
+<?php
+if($this->direction == 'rtl'){
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:right;
+				}";
+	echo "#language{
+	 				left:10px;
+					position: absolute;
+					padding-top: 3px;
+	 			}";
+
+	echo "#appTitle{
+	 				left: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-right: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:left;
+				text-align: left;
+				}";
+
+	echo "</style>";
+}else{
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:left;
+				}";
+	echo "#language{
+	 				right:10px;
+					position: absolute;
+					padding-top: 3px;
+	 			}";
+
+	echo "#appTitle{
+	 				right: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-left: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:right;
+				text-align: right;
+				}";
+
+	echo "</style>";
+}
+
+?>
+	<!--[if lt IE 7]>
+	<style media="screen" type="text/css">
+	#container {
+		height:100%;
+	}
+	.underlinemenu{
+		font-weight: none;
+		width: 70%;
+		padding-top: 3px;
+		}
+	 #topmenu{
+		position: absolute;
+		padding: 1px 250px 0px 0px;
+		height : 20px;
+	}	
+	
+	#language{
+		position: absolute;
+		padding: 3px 10px 0 10px;
+		height : 20px;
+	 }
+	 
+	</style>
+	<![endif]-->
+	
+	
+
+
+
+</head>
+<body class="claro">
+	<div id="container">
+		<div id="header">
+			<div id="logo"></div>
+			<div id="appTitle"><?php echo $this->translate(APPLICATION_TITLE);?></div>
+		</div>
+	
+		<div id="menu" style=""><?php $auth = Zend_Auth::getInstance();?>
+
+			<?php $gobjsessionsis = Zend_Registry::get('sis');?>
+			<div id="language"><?php echo $gobjsessionsis->universityname;?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $auth->getIdentity()->loginName;?>&nbsp;|&nbsp <?php echo $this->translate("Language"); ?>: 
+				<select style="width: 80px;" onchange="window.location = '?lang=' + this.options[this.selectedIndex].value">
+					<?php if($this->language == 1) {?>
+						<option value="ar"
+							<?php echo $this->locale=="ar_YE"?"selected='selected'":""; ?>>Arabic
+						</option>
+						<?php }?>
+						<option value="en"
+							<?php echo $this->locale=="en_US"?"selected='selected'":""; ?>>English
+						</option>
+						<?php if($this->language == 2) {?>
+						<option value="id"
+							<?php echo $this->locale=="id_ID"?"selected='selected'":""; ?>>Indonesia
+						</option>
+						<?php }?>
+				</select>
+			</div>
+			<div id="topmenu">
+				<div class="underlinemenu">
+					<ul>
+						<?php if(in_array($larrexistingmodules[0], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[0],'controller'=>'user','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Setup"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[1], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[1],'controller'=>'manualapplication','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Application"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[2], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[2],'controller'=>'studentregistration','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Registration"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[3], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[3],'controller'=>'studentprofile','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Records"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[4], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[4],'controller'=>'accountgroup','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Finance"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[5], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[5],'controller'=>'index','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Affairs"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[6], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[6],'controller'=>'academicstatus','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Examination"); ?></a></li>
+						<?php } if(in_array($larrexistingmodules[7], $larrmodules)){?>
+							<li><a href="<?php echo $this->url(array('module'=>$larrexistingmodules[7],'controller'=>'appnsummaryreport','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Reports"); ?></a></li>
+						<?php }?>
+							<li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'index','action'=>'logout'),'default',true) ?>"><?php echo $this->translate("Logout"); ?></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="body">
+			<!-- Begin Section Content-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td rowspan="2" width="15%" valign="top">
+							<div id="vertmenu"  orientation="vertical"
+  										style="width:190px; height:500px;overflow:auto;">
+								<ul>
+									<?php  //$module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+									 	 $this->view->url = $this->getRequest()->getRequestUri();
+										 $string_exploded = explode('/',$this->view->url);
+										 echo "dsf".$module = $string_exploded[2];
+									
+									?>
+									<?php switch($module) { 
+										
+										case $larrexistingmodules[0]: ?>
+											<li><h1><?php echo $this->translate("General").' '.$this->translate("Set-up"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'user','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Users"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'changepassword','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Change Password"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'countrymaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Country Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'roles','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Roles"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'university','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Organization"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'initialconfiguration','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Initial Configuration"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'maintenance','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Maintenance"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'emailtemplate','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Email Template"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'language','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Langauge").' '.$this->translate("Listing"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'staffmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Staff").' '.$this->translate("Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'schoolmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("School").' '.$this->translate("Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'sponsor','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Sponsor Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'bank','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Bank Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'agentmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Agent Master"); ?></a></li>
+											<li><h1><?php echo $this->translate("Pre Registration").' '.$this->translate("Set-up"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'coursetype','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Course").' '.$this->translate("Type"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Subject").' '.$this->translate("Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectwithdrawalpolicy','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Subject Withdrawal Policy").' '.$this->translate("Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'semestermaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Semester").' '.$this->translate("Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'awardlevel','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Award").' '.$this->translate("Level"); ?></a></li>
+											<li><h1><?php echo $this->translate("Program").' '.$this->translate("Set-up"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'program','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Program"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'landscape','action'=>'index'),'default',true) ?>"><?php echo $this->translate($this->Landscape);?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'programchecklist','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Check List Of").' '.$this->translate($this->Program).' '.$this->translate("For Admission");?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'staffsubjects','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Staff Subject Set Up");?></a></li>
+										<?php break; ?>
+											
+										<?php case $larrexistingmodules[1]: ?>
+											<li><h1><?php echo $this->translate("Pre").' '.$this->translate("Application-Setup"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'programentry','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Entry Requirement"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'subjectprogram','action'=>'index'),'default',true) ?>"><?php echo $this->translate($this->Program).' '.$this->translate("Subject Marks Requirements");?></a></li>
+											<li><h1><?php echo $this->translate("Application"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'manualapplication','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Manual Application"); ?></a></li>
+											<li><h1><?php echo $this->translate("Placement").' '.$this->translate("Test"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'placementtest','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Create Placement Test"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'placementtestmarks','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Placement Test Marks Entry"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'placementtestmarksbulk','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Placement Test Marks Entry Bulk"); ?></a></li>
+											<li><h1><?php echo $this->translate("Verification And Confirmation"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'verifyprogramchecklist','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Check List").' '.$this->translate("Verification"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'studentsapproval','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Applicant Approval"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'sendoffer','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Send Offer Letter"); ?></a></li>
+
+										<?php break;?>
+											
+										<?php case $larrexistingmodules[2]: ?>
+											<li><h1><?php echo $this->translate("Registration"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentregistration','action'=>'index'),'default',true) ?>"><?php echo $this->translate("New Student Registration"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentregistrationbulk','action'=>'index'),'default',true) ?>"><?php echo $this->translate("New Student Registration Bulk"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'seniorstudentregistration','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Senior Student Registration"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'seniorstudentregistrationbulk','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Senior Student Registration Bulk"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'adddropsubject','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Add-Drop"); ?><?php echo " "; ?><?php echo $this->translate("$this->Subject"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'credittransfer','action'=>'index'),'default',true) ?>"><?php echo $this->translate("External Credit Transfer Application"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentcredittransfersearch','action'=>'index'),'default',true) ?>"><?php echo $this->translate("External Credit Transfer Approval"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentsubjects','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Registered Subjects Approval"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentprogramchange','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Program Change Request"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'studentprogramchangeapproval','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Program Change Request Approval"); ?></a></li>
+											<li><h1><?php echo $this->translate("Verification And Confirmation"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'application','controller'=>'studentrejection','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Rejection"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'registration','controller'=>'semesterstatus','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Semester Status"); ?></a></li>
+										<?php break;?>
+											
+											
+										<?php case $larrexistingmodules[3]: ?>
+											<li><h1><?php echo $this->translate("Records"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'studentprofile','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student Profile"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'changestatus','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Change Student Status"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'semesterchangestatus','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Change Student Semester Status"); ?></a></li>
+											<li><h1><?php echo $this->translate("Disciplinary Action"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'disciplinaryactionmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Disciplinary Messaging Setup"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'disciplinaryaction','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Disciplinary Action"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'records','controller'=>'disciplinaryactionapproval','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Disciplinary Action Approval"); ?></a></li>
+											
+											<?php break;?>
+											
+										<?php case $larrexistingmodules[4]: ?>
+											<li><h1><?php echo $this->translate("Student").' '.$this->translate("Finance-Setup"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'accountgroup','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Account Group"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'itemgroup','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Revenue Item Setup"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'plantype','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Plan Type"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'feestructure','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Fee Structure"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'invoice','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Invoice"); ?></a></li>	
+											<li><a href="<?php echo $this->url(array('module'=>'studentfinance','controller'=>'billapproval','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Bill Approval"); ?></a></li>
+											
+											
+											<?php break;?>
+											
+										<?php case $larrexistingmodules[5]: ?>
+											<li><h1><?php echo $this->translate("Student").' '.$this->translate("Affairs-Setup"); ?></h1></li>
+											<?php break;?>
+											
+										<?php case $larrexistingmodules[6]: ?>
+											<li><h1><?php echo $this->translate("Set-Up"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'academicstatus','action'=>'index'),'default',true) ?>"><?php echo $this->translate("GPA/CGPA Status"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'gradesetup','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Grade Setup"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'marksentrysetup','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Marks Entry Setup"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'subjectregistration','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Subjects Registration Policy"); ?></a></li>
+											<li><h1><?php echo $this->translate("Marks Entry - Setup"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'marksdistributionmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Marks Distribution Master"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'marksdistributiondetails','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Marks Distribution Details"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'subjectsmarksentry','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Subjects Marks Entry"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'subjectsmarksverification','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Subjects Marks Verification"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'subjectstaffverification','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Subjects Staff Verification"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'coursetypedetails','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Course Type Details"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'examination','controller'=>'appealentry','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Remarking Against Appeal"); ?></a></li>
+											<?php break;?>
+											
+										<?php case $larrexistingmodules[7]: ?>
+											<li><h1><?php echo $this->translate("Reports"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'reports','controller'=>'appnsummaryreport','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Application Summary Report"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'reports','controller'=>'appnsummaryreport','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Application Summary Report"); ?></a></li>
+											<?php break;?>
+											
+										<?php default: ?>
+											<?php echo "";?>	
+									<?php } ?>		
+								</ul>
+								<br>
+							</div>
+						</td>
+						<td valign="top">
+							<div style="background: #fff;" align="center" >
+								<ul class="stepsmenu">
+								<?php  $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+									   $controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName(); ?>
+								   
+								<?php 	switch($module) {
+									case "generalsetup": ?>
+										<?php switch($controller) {
+												  case "university": ?>
+											<?php case "collegemaster": ?>
+											<?php case "departmentmaster": ?>
+												<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'university','action'=>'index'),'default',true) ?>"><?php echo $this->translate("University"); ?></a></li>
+								    			<li class="second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'collegemaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->College"); ?></a></li>
+								    			<li class="third"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'departmentmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Department"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    		<?php case "bank": ?>
+											<?php case "bankdetails": ?>
+								    			<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'bank','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Bank"); ?></a></li>
+								    			<li class="second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'bankdetails','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Bank Details"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    			
+											<?php case "coursemaster": ?>
+											<?php case "program": ?>
+											<?php case "programbranch": ?>
+												<!-- <li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'coursemaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate($this->Program).' '.$this->translate("Master"); ?></a></li> -->
+								    			<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'program','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Program"); ?></a></li>
+								    			<li class="second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'programbranch','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Quota Management"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    			
+											<?php case "semestermaster": ?>
+											<?php case "semester": ?>
+											<?php case "subjectsoffered": ?>
+												<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'semestermaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Semester").' '.$this->translate("Master"); ?></a></li>
+								    			<li class = "second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'semester','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Semester"); ?></a></li>
+								    			<li class = "third"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectsoffered','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Subject").'s'.' '.$this->translate("Offered"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    			
+											<?php case "subjectmaster": ?>
+											<?php case "subjectprerequisites": ?>
+											<?php case "subjectequivalent": ?>
+												<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectmaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Subject").' '.$this->translate("Master"); ?></a></li>
+								    			<li class = "second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectprerequisites','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Subject").' '.$this->translate("Prerequisites"); ?></a></li>
+								    			<li class = "third"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'subjectequivalent','action'=>'index'),'default',true) ?>"><?php echo $this->translate("$this->Subject").' '.$this->translate("Equivalent"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    		<?php case "countrymaster": ?>
+											<?php case "state": ?>
+											<?php case "city": ?>
+												<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'countrymaster','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Country").' '.$this->translate("Master"); ?></a></li>
+								    			<li class = "second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'state','action'=>'index'),'default',true) ?>"><?php echo $this->translate("State"); ?></a></li>
+								    			<li class = "third"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'city','action'=>'index'),'default',true) ?>"><?php echo $this->translate("City"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    		<?php case "sponsor": ?>
+											<?php case "sponsortemplate": ?>
+												<li class="first"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'sponsor','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Sponsor").' '.$this->translate("Master"); ?></a></li>
+								    			<li class = "second"><a href="<?php echo $this->url(array('module'=>'generalsetup','controller'=>'sponsortemplate','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Sponsor").' '.$this->translate("Template"); ?></a></li>
+								    			<?php break; ?>
+								    			
+								    			
+											<?php default: ?>
+												<?php echo "";?>	
+										<?php } ?>	
+									<?php break;?>	
+										
+										
+										
+	
+												
+										
+										
+									<?php default: 
+										echo "";	
+										
+								} ?>
+								
+								</ul>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<table width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<tr>
+										<td valign="top"><?php echo $this->layout()->content; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- End Section Content-->
+		</div>
+		<div id="footer"><!-- Footer start --> <?php echo $this->translate("Copyright"); ?>&copy;<?php echo $this->translate(APPLICATION_ENTERPRISE) ;?> 
+		<!-- Footer end --></div>
+	</div>
+</body>
+</html>

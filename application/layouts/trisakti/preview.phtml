@@ -1,0 +1,183 @@
+<?php
+//get locale
+$registry = Zend_Registry :: getInstance();
+$locale = $registry->get('Zend_Locale');
+$this->locale = $locale->toString();
+$auth = Zend_Auth :: getInstance();
+$larrmodules = array ();
+$larrcontrollers = array ();
+
+if ($locale == 'ar_YE') {
+	$this->direction = "rtl";
+	$this->float = "right";
+	$locale = 'ar';
+}
+elseif ($locale == 'en_US') {
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+} else {
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}
+
+
+/*
+ * SIS Setup
+ */
+$this->gobjsessionsis = Zend_Registry :: get('sis');
+$lobjinitialconfigModel = new GeneralSetup_Model_DbTable_Initialconfiguration();
+$larrInitialSettings = $lobjinitialconfigModel->fnGetInitialConfigDetails($this->gobjsessionsis->idUniversity);
+$this->College = empty ($larrInitialSettings['CollegeAliasName']) ? "College" : $larrInitialSettings['CollegeAliasName'];
+$this->Department = empty ($larrInitialSettings['DepartmentAliasName']) ? "Department" : $larrInitialSettings['DepartmentAliasName'];
+$this->Subject = empty ($larrInitialSettings['SubjectAliasName']) ? "Subject" : $larrInitialSettings['SubjectAliasName'];
+$this->Program = empty ($larrInitialSettings['ProgramAliasName']) ? "Program" : $larrInitialSettings['ProgramAliasName'];
+$this->Branch = empty ($larrInitialSettings['BranchAliasName']) ? "Branch" : $larrInitialSettings['BranchAliasName'];
+$this->Landscape = empty ($larrInitialSettings['LandscapeAliasName']) ? "Landscape" : $larrInitialSettings['LandscapeAliasName'];
+$this->language = $larrInitialSettings['Language'];
+
+$gobjsessionsis = Zend_Registry::get('sis');
+
+?>
+
+<?php  echo $this->doctype(); ?>
+<html>
+<head>
+
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/layout.css'); ?>
+	
+	<!-- ///////////////////////// DOJO ////////////////////////// --> 
+	<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+
+	<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/dojo/dojo/nls/dojo_'.$locale.'.js'); ?>
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/claro/EnhancedGrid.css" />
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css" />
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/Pagination.css" />
+	 
+	 
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/simpletree.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/topmenu.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/style.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/left-menu.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/dojo/dijit/themes/claro/claro.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/dojo/dijit/themes/claro/Editor.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/dojo/dojox/plugins/resources/css/LocalImage.css'); ?>
+	<!-- ///////////////////////// END DOJO ////////////////////// -->
+	
+	<!-- //////////////////////// JQUERY //////////////////////// -->
+	<?php 
+		$this->jQuery()->enable();
+		$this->jQuery()->setVersion('1.7.2');
+		$this->jQuery()->useCdn(false);
+	 	$this->jQuery()->setLocalPath($this->baseUrl().'/js/jquery/jquery-1.5.1.min.js');
+		
+		$this->jQuery()->uiEnable();
+		$this->jQuery()->setUiVersion('1.8.18');
+		$this->jQuery()->useUiCdn(false);
+		$this->jQuery()->addStylesheet($this->baseUrl().'/js/jquery/themes/smoothness/jquery-ui.css');
+		$this->jQuery()->setUiLocalPath($this->baseUrl().'/js/jquery/jquery-ui-1.8.18.min.js');
+		
+		echo $this->jQuery();
+		
+		echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/timepicker/timePicker.css');
+		echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/timepicker/jquery.timepicker.js');
+		
+		echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/multiselect-1.12/jquery.multiselect.min.js');
+		echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/multiselect-1.12/jquery.multiselect.css');
+		
+		echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/colorbox/jquery.colorbox-min.js');
+		
+		echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery.bt.min.js');
+		echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/colorpicker.css');
+		echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/colorbox/colorbox.css');
+		echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/ltr_layout.css');
+		
+		echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/jeditable/jquery.jeditable.js');
+	?>
+	<!-- //////////////////////// JQUERY //////////////////////// -->
+
+	<!--[if lt IE 7]>
+	<style media="screen" type="text/css">
+	#container {
+		height:100%;
+	}
+	.underlinemenu{
+		font-weight: none;
+		width: 70%;
+		padding-top: 3px;
+		}
+	 #topmenu{
+		position: absolute;
+		padding: 1px 250px 0px 0px;
+		height : 20px;
+	}
+
+	#language{
+		position: absolute;
+		padding: 3px 10px 0 10px;
+		height : 20px;
+	 }
+
+	</style>
+	<![endif]-->
+</head>
+<body class="claro">
+<?php $uri = Zend_Controller_Front :: getInstance()->getRequest()->getRequestUri(); ?>
+
+	<div id="container">
+		<div id="header">
+			<div id="logo"></div>
+			<div id="appTitle">
+				<?php echo $gobjsessionsis->universityname;?>
+				<br />
+				<i><?php echo APPLICATION_TITLE; ?></i>
+			</div>
+		</div>
+
+		<div id="menu" style=""><?php $auth = Zend_Auth::getInstance();?>
+			<div id="language"><?php echo $auth->getIdentity()->loginName;?> <small>(<i><?php echo $this->gobjsessionsis->rolename; ?></i>)</small>&nbsp;|&nbsp <?php echo $this->translate("Language"); ?>:
+				<select style="width: 80px;" onchange="window.location = '?lang=' + this.options[this.selectedIndex].value">
+					<?php if($this->language == 1) {?>
+						<option value="ar"
+							<?php echo $this->locale=="ar_YE"?"selected='selected'":""; ?>>Arabic
+						</option>
+					<?php }?>
+					<?php if($this->language == 2) {?>
+						<option value="id"
+							<?php echo $this->locale=="id_ID"?"selected='selected'":""; ?>>Indonesia
+						</option>
+					<?php }?>
+						<option value="en"
+							<?php echo $this->locale=="en_US"?"selected='selected'":""; ?>>English
+						</option>
+				</select>
+			</div>
+			<div id="topmenu">
+				<div class="underlinemenu">
+					<?php //echo $this->navigation()->menu(); ?>
+				</div>
+			</div>
+		</div>
+		<div id="body">
+			<!-- Begin Section Content-->
+			
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td valign="top">
+						<?php echo $this->layout()->content; ?>
+					</td>
+				</tr>
+			</table>
+			
+			<!-- End Section Content-->
+		</div>
+		<div id="footer"><!-- Footer start --> <?php echo $this->translate("Copyright"); ?>&copy;<?php echo $this->translate(APPLICATION_ENTERPRISE) ;?>
+		<!-- Footer end --></div>
+	</div>
+
+</body>
+</html>

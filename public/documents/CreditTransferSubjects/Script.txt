@@ -1,0 +1,288 @@
+CREATE TABLE `trisakti_demo`.`tbl_programentrylearningmode` (`Idprogramentrylearningmode` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, `IdProgramEntry` BIGINT(20) UNSIGNED NOT NULL, `LearningMode` BIGINT(20) UNSIGNED NOT NULL, PRIMARY KEY (`Idprogramentrylearningmode`)) ENGINE = InnoDB;
+
+
+===================================================================================================================================
+
+ALTER TABLE `tbl_programentrylearningmode` ADD FOREIGN KEY (`IdProgramEntry`) REFERENCES `trisakti_demo`.`tbl_programentry`(`IdProgramEntry`);
+ALTER TABLE `tbl_programentrylearningmode` ADD FOREIGN KEY (`LearningMode`) REFERENCES `trisakti_demo`.`tbl_learningmode`(`IdLearningMode`);
+
+
+=====================================================================================================================
+
+ALTER TABLE `tbl_programentry` DROP `LearningMode`
+
+
+================================================================================
+
+TRUNCATE TABLE `tbl_placementtestbranch`
+
+
+=================================================================================
+
+ALTER TABLE `tbl_placementtestbranch` DROP FOREIGN KEY `tbl_placementtestbranch_ibfk_2`;
+
+
+==========================================================================================
+ALTER TABLE `tbl_placementtestbranch` CHANGE `IdCollege` `IdProgram` BIGINT(20) UNSIGNED NOT NULL COMMENT 'Foreign key to tbl_program'
+
+================================================================================================
+
+ALTER TABLE `tbl_placementtestbranch` ADD FOREIGN KEY (`IdProgram`) REFERENCES `trisakti_demo`.`tbl_program`(`IdProgram`);
+
+
+=======================================================================================================
+
+ALTER TABLE `tbl_placementtest` DROP `IdProgram` 
+
+=========================================================================================================
+
+ALTER TABLE `tbl_programchecklist` ADD FOREIGN KEY (`IdProgram`) REFERENCES `trisakti_demo`.`tbl_program`(`IdProgram`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_programchecklist` ADD FOREIGN KEY (`UpdUser`) REFERENCES `trisakti_demo`.`tbl_user`(`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+================================================================================================================
+
+ALTER TABLE `tbl_programchecklist`  ADD `Active` BINARY(1) NOT NULL
+
+
+=======================================================================================================
+
+CREATE TABLE `trisakti_demo`.`tbl_programchecklist` (`IdCheckList` INT UNSIGNED NOT NULL AUTO_INCREMENT, `CheckListName` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `Description` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL, `IdProgram` BIGINT(20) UNSIGNED NOT NULL COMMENT 'FK to tbl_program', `UpdUser` BIGINT(20) UNSIGNED NOT NULL COMMENT 'FK to tbl_user', `UpdDate` DATETIME NOT NULL, PRIMARY KEY (`IdCheckList`)) ENGINE = InnoDB;
+
+
+===============================================================================================================
+
+INSERT INTO `trisakti_demo`.`tbl_resources` (`idResources`, `Module`, `Controller`, `Action`, `Name`, `RouteName`, `Modified`, `Created`) VALUES (NULL, 'generalsetup', 'programchecklist', 'newprogramchecklist', 'Add', 'Program Checklist', '2012-01-09 09:54:31', '2012-01-09 09:54:33'), (NULL, 'generalsetup', 'programchecklist', 'programchecklist', 'Edit', 'Program Checklist', '2012-01-09 09:54:58', '2012-01-09 09:55:00');
+
+
+===================================================================================================================
+
+ALTER TABLE `tbl_studentapplication` CHANGE `ParentJob` `ParentJob` BIGINT( 20 ) UNSIGNED NULL DEFAULT NULL COMMENT 'FK to definitionMs',
+CHANGE `Referrel` `Referrel` BIGINT( 20 ) UNSIGNED NULL DEFAULT NULL COMMENT 'FK to definitionMs',
+CHANGE `JacketSize` `JacketSize` BIGINT( 20 ) UNSIGNED NULL DEFAULT NULL COMMENT 'FK to tbl_definationms'
+
+ALTER TABLE `tbl_documentdetails` ADD `documentcategory` INT UNSIGNED NULL DEFAULT NULL AFTER `Comments` 
+
+
+=========================================================================================================================
+
+
+ALTER TABLE `tbl_config` ADD `InternationalPlcamenetTestProcessingFee` BINARY( 1 ) NOT NULL DEFAULT '0' COMMENT '1: yes 0: no',
+ADD `InternationalCertificationProcessingFee` BINARY( 1 ) NOT NULL DEFAULT '0' COMMENT '1: yes 0: no',
+ADD `LocalPlcamenetTestProcessingFee` BINARY( 1 ) NOT NULL DEFAULT '0' COMMENT '1: yes 0: no',
+ADD `LocalCertificationProcessingFee` BINARY( 1 ) NOT NULL DEFAULT '0' COMMENT '1: yes 0: no',
+ADD `Completionofyears` VARCHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL 
+
+
+
+========================================================================================================================
+ALTER TABLE `tbl_program`  ADD `MinimumAge` BIGINT(20) NOT NULL,  ADD `AgentVerification` BINARY(1) NOT NULL COMMENT '1:Yes;0:No'
+
+
+
+
+======================================================================================================================
+
+ALTER TABLE `tbl_studentapplication` CHANGE `LocalPlacementTest` `LocalPlacementTest` BINARY( 1 ) NOT NULL DEFAULT '0',
+CHANGE `LocalCertification` `LocalCertification` BINARY( 1 ) NOT NULL DEFAULT '0',
+CHANGE `InternationalPlacementTest` `InternationalPlacementTest` BINARY( 1 ) NOT NULL DEFAULT '0',
+CHANGE `InternationalCertification` `InternationalCertification` BINARY( 1 ) NOT NULL DEFAULT '0'
+
+
+
+==============================================================================================================================
+
+ALTER TABLE `tbl_studentapplication` ADD `LocalPlacementTest` BINARY( 1 ) NOT NULL AFTER `JacketSize` ,
+ADD `LocalCertification` BINARY( 1 ) NOT NULL AFTER `LocalPlacementTest` ,
+ADD `InternationalPlacementTest` BINARY( 1 ) NOT NULL AFTER `LocalCertification` ,
+ADD `InternationalCertification` BINARY( 1 ) NOT NULL AFTER `InternationalPlacementTest` 
+
+=========================================================================================================================
+
+ALTER TABLE `tbl_program` CHANGE `AgentVerification` `AgentVerification` BINARY(1) NOT NULL DEFAULT '0' COMMENT '1:Yes;0:No'
+
+
+==============================================================================================================
+
+ALTER TABLE `tbl_studentapplication` ADD `Completionofyesr` BINARY( 1 ) NOT NULL DEFAULT '1' COMMENT '1: completed 0: Not Completed'
+
+
+
+===============================================================================================================
+
+CREATE TABLE `trisakti_demo`.`tbl_varifiedprogramchecklist` (
+`IdVarifiedProgramChecklist` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+`IdApplication` BIGINT(20) UNSIGNED NOT NULL, 
+`IdCheckList` BIGINT(20) UNSIGNED NOT NULL, 
+`Varified` TINYINT(1) NULL DEFAULT '0', 
+`Comments` VARCHAR(100) NULL DEFAULT NULL, 
+`UpdUser` BIGINT(20) UNSIGNED NOT NULL, 
+`UpdDate` DATETIME NOT NULL) 
+ENGINE = InnoDB;
+
+
+======================================================================================================
+
+ALTER TABLE  `tbl_varifiedprogramchecklist` ADD  `IdProgram` BIGINT( 20 ) UNSIGNED NOT NULL AFTER  `IdCheckList`
+
+===============================================================================================================
+
+
+ALTER TABLE `tbl_studenteducationdetails`  ADD `SubjectId` BIGINT(20) NOT NULL COMMENT 'FK to tbl_subjectmaster',  ADD `SubjectMark` BIGINT(20) NOT NULL
+
+
+==============================================================================================================================
+
+ALTER TABLE `tbl_programentry`  ADD `SSCRequired` BINARY(1) NOT NULL COMMENT '1:Required, 0:Not Required' AFTER `MinAge`,  ADD `PlacementTestRequired` BINARY(1) NOT NULL COMMENT '1:Required, 0:Not Required' AFTER `SSCRequired`
+
+
+===============================================================================================================
+
+INSERT INTO `trisakti_demo`.`tbl_resources` (`idResources`, `Module`, `Controller`, `Action`, `Name`, `RouteName`, `Modified`, `Created`) VALUES (NULL, 'application', 'programentry', 'getlearningmodelist', 'AjaxLearningMode', 'Entry Requirement', '2012-01-12 18:05:04', '2012-01-12 18:05:09');
+
+=====================================================================================================================================
+
+
+CREATE TABLE `trisakti_demo`.`tbl_subjectprogram` (`IdSubjectProgram` INT NOT NULL AUTO_INCREMENT, `IdProgram` BIGINT(20) NOT NULL COMMENT 'FK to tbl_program', `IdSubject` BIGINT(20) NOT NULL COMMENT 'FK to tbl_subject', `Mark` BIGINT(20) NOT NULL, `UpdUser` BIGINT(20) NOT NULL COMMENT 'FK to tbl_user', `UpdDate` DATE NOT NULL, `Active` BINARY(1) NOT NULL COMMENT '1=Active;0=Inactive', PRIMARY KEY (`IdSubjectProgram`)) ENGINE = InnoDB;
+
+
+===========================================================================================================================
+CREATE TABLE `trisakti_demo`.`tbl_credittransfersubjects` (`IdCreditTransferSubjects` BIGINT(20) NOT NULL AUTO_INCREMENT, `IdCreditTransfer` BIGINT(20) NOT NULL, `IdSubject` BIGINT(20) NOT NULL, `Marks` BIGINT(20) NOT NULL, PRIMARY KEY (`IdCreditTransferSubjects`)) ENGINE = InnoDB;
+
+
+=============================================================================================================================
+
+ALTER TABLE `tbl_credittransfersubjects` ADD FOREIGN KEY (`IdCreditTransfer`) REFERENCES `trisakti_demo`.`tbl_credittransfer`(`IdCreditTransfer`);
+ALTER TABLE `tbl_credittransfersubjects` ADD FOREIGN KEY (`IdSubject`) REFERENCES `trisakti_demo`.`tbl_subjectmaster`(`IdSubject`);
+
+===================================================================================================================
+
+ALTER TABLE `tbl_programentry` ADD `InternationalPlacementTest` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0- No, 1- Yes' AFTER `PlacementTestRequired` ,
+ADD `InternationalCertification` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0- No, 1- Yes' AFTER `InternationalPlacementTest` ,
+ADD `InternationalAndOr` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0-Or, 1-And' AFTER `InternationalCertification` ,
+ADD `LocalPlacementTest` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0- No, 1- Yes' AFTER `InternationalAndOr` ,
+ADD `LocalCertification` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0- No, 1- Yes' AFTER `LocalPlacementTest` ,
+ADD `LocalAndOr` TINYINT( 1 ) NULL DEFAULT '0' COMMENT '0-Or, 1-And' AFTER `LocalCertification` 
+
+===============================================================================================================================
+
+CREATE TABLE `trisakti_demo`.`tbl_credittransferuploads` (`IdCreditTransferSubjectsDocs` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, `IdCreditTransferSubjects` BIGINT(20) UNSIGNED NOT NULL, `FileLocation` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `FileName` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `UploadedFilename` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `FileSize` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `MIMEType` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, `UpdDate` DATETIME NOT NULL, `UpdUser` BIGINT(20) UNSIGNED NOT NULL, `Comments` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL, `documentcategory` BIGINT(20) UNSIGNED NULL) ENGINE = InnoDB;
+
+================================================================================================================================
+
+ALTER TABLE `tbl_credittransfersubjects` CHANGE `IdCreditTransferSubjects` `IdCreditTransferSubjects` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT
+
+
+=============================================================================================================
+
+ALTER TABLE  `tbl_studentapplication` ADD  `Rejected` BINARY( 1 ) NOT NULL DEFAULT  '0' COMMENT  '0-No,1-Yes',
+ADD  `RejectedComments` VARCHAR( 255 ) NULL DEFAULT NULL
+
+
+==============================================================================================================
+
+ALTER TABLE  `tbl_paymentvarification` ADD  `UpdUser` BIGINT( 20 ) UNSIGNED NOT NULL ,
+ADD  `UpdDate` DATETIME NOT NULL
+
+==============================================================================================
+
+ALTER TABLE  `tbl_paymentvarification` ADD FOREIGN KEY (  `IdApplication` ) REFERENCES  `trisakti_demo`.`tbl_studentapplication` (
+`IdApplication`
+) ON DELETE CASCADE ON UPDATE CASCADE ;
+
+ALTER TABLE  `tbl_paymentvarification` ADD FOREIGN KEY (  `UpdUser` ) REFERENCES  `trisakti_demo`.`tbl_user` (
+`iduser`
+) ON DELETE CASCADE ON UPDATE CASCADE ;
+
+
+=====================================================================================================================
+
+
+INSERT INTO `trisakti_demo`.`tbl_resources` (`idResources`, `Module`, `Controller`, `Action`, `Name`, `RouteName`, `Modified`, `Created`) VALUES (NULL, 'registration', 'studentcredittransfersearch', 'index', 'Search', 'Student Credit Transfer Search', '2012-01-13 16:32:43', '2012-01-13 16:32:47');
+
+
+
+=============================================================================================================
+
+CREATE TABLE `trisakti_demo`.`tbl_studentscredittransfer` (`IdStudentsCredittransfer` INT(20) UNSIGNED NOT NULL AUTO_INCREMENT, `DocumentsVerified` BINARY(1) NOT NULL COMMENT '1:Verified,0:Not Verified', `DocumentsApproved` BINARY(1) NOT NULL COMMENT '1:approved,0:Not Approved', `Comments` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL, `UpdDate` DATETIME NOT NULL, `UpdUser` BIGINT(20) UNSIGNED NOT NULL, PRIMARY KEY (`IdStudentsCredittransfer`)) ENGINE = InnoDB;
+
+
+======================================================================================================================
+
+ALTER TABLE  `tbl_paymentvarification` ADD  `Comments` VARCHAR( 255 ) NULL DEFAULT NULL AFTER  `OtherDocumentVarified`
+
+
+
+=============================================================================================================
+
+
+
+ALTER TABLE `tbl_credittransfer`  ADD `Comments` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL
+
+
+
+=======================================================================================================================
+
+ALTER TABLE `tbl_tempstudenteducationdetails` ADD `TypeOfSchool` INT( 11 ) NULL DEFAULT NULL ,
+ADD `StatusOfSchool` INT( 11 ) NULL DEFAULT NULL ,
+ADD `TypeOfStudent` BIGINT( 20 ) NULL DEFAULT NULL COMMENT '1: international 0 : Local',
+ADD `HomeTownSchool` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL ,
+ADD `CreditTransferFrom` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL ,
+ADD `SubjectId` BIGINT( 20 ) NOT NULL COMMENT 'FK to tbl_subjectmaster',
+ADD `SubjectMark` BIGINT( 20 ) NOT NULL 
+
+
+
+============================================================================================================
+
+CREATE TABLE IF NOT EXISTS `tbl_disciplinaryaction` (
+  `IdDisciplinaryAction` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdApplication` bigint(20) unsigned NOT NULL COMMENT 'FK To Student Application',
+  `IdDispciplinaryActionType` bigint(20) unsigned NOT NULL COMMENT 'FK To Definition MS( Disciplinary Actions)',
+  `DateOfMistake` date NOT NULL,
+  `ReportingDate` date NOT NULL,
+  `DetailedNarration` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `PenaltyDescription` varchar(205) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `PenaltyAmount` decimal(12,2) NOT NULL,
+  `WarningIssued` binary(1) NOT NULL,
+  `UploadNotice` varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdDate` date NOT NULL,
+  `UpdUser` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`IdDisciplinaryAction`),
+  KEY `IdApplication` (`IdApplication`), 
+  KEY `IdDispciplinaryActionType` (`IdDispciplinaryActionType`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+============================================================================================================================
+
+CREATE TABLE IF NOT EXISTS `tbl_disciplinaryactionmailsentto` (
+  `IdDisciplinaryActionMailSentTo` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdDisciplinaryAction` bigint(20) NOT NULL COMMENT 'FK to tbl_disciplinaryaction',  
+  `DiscMsgCollegeHead` binary(1) NOT NULL COMMENT '0:Mail-Not-Sent 1:Mail-Sent',
+  `DiscMsgParent` binary(1) NOT NULL COMMENT '0:Mail-Not-Sent 1:Mail-Sent',
+  `DiscMsgSponor` binary(1) NOT NULL COMMENT '0:Mail-Not-Sent 1:Mail-Sent',
+  `DiscMsgRegistrar` binary(1) NOT NULL COMMENT '0:Mail-Not-Sent 1:Mail-Sent',
+  `UpdDate` datetime NOT NULL,
+  `UpdUser` bigint(20) NOT NULL,
+  PRIMARY KEY (`IdDisciplinaryActionMailSentTo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+====================================================================================================================
+
+CREATE TABLE IF NOT EXISTS `tbl_disciplinaryactionmaster` (
+  `idDisciplinaryActionMaster` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idDisciplinaryActionType` bigint(20) NOT NULL,  
+  `DiscMsgCollegeHead` binary(1) DEFAULT NULL,
+  `DiscMsgParent` binary(1) DEFAULT NULL,
+  `DiscMsgSponor` binary(1) DEFAULT NULL,
+  `DiscMsgRegistar` binary(1) DEFAULT NULL,
+  `UpdDate` date NOT NULL,
+  `UpdUser` bigint(20) NOT NULL,
+  PRIMARY KEY (`idDisciplinaryActionMaster`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 
+
+
+
+======================================================================================================================

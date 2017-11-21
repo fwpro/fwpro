@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:12px; }
+
+fieldset { border:0!important; padding:0!important; margin:0!important; background-color: transparent!important; }
+/*login Screen Part*/
+.loginbox {  
+    height: 240px;
+    width: 500px;
+    margin: -200px 0 0 -280px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+
+.loginbox:before
+{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+}
+.loginbox h1
+{
+    
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 30px 0;
+    letter-spacing: 4px;
+    position: relative;
+}
+
+#inputs input
+{
+    padding: 10px;
+    margin: 0 0 15px 0;
+    width: 250px; /* 353 + 2 + 45 = 400 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#username
+{
+    background-position: 5px -2px !important;
+}
+
+#password
+{
+    background-position: 5px -52px !important;
+}
+
+#inputs input:focus
+{
+    outline: none;
+}
+
+#actions
+{
+    margin: 25px 0 0 0;
+}
+#submit, #next, #addColumn, #finish
+{		
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    float: left;
+    height: 35px;
+    padding: 0;
+    width: 80px;
+    cursor: pointer;
+    font: bold 15px Arial, Helvetica;
+}
+	
+
+#submit:active
+{		
+    outline: none;
+}
+
+
+#submit::-moz-focus-inner
+
+{
+  border: none;
+}
+
+#actions a
+{
+    float: right;
+    line-height: 35px;
+    margin-left: 10px;
+}
+/*login screen ends*/
+
+
+/*login Section*/
+.loginbox {  background-color: #f8f8f8;
+    background-image: url(../../images/lock.png);
+	background-repeat: no-repeat;
+	background-position: 90% 71px;
+   
+}
+
+
+.loginbox:before
+{
+    border: 1px dashed #ccc;
+    -moz-box-shadow: 0 0 0 1px #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+.loginbox h1
+{
+    color: #666;
+    font: normal 21px/1 Verdana, Helvetica;
+}
+
+
+#inputs input, select, textarea
+{
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+#inputs input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+#submit, #next, #addColumn, #finish
+{		
+    background-color: #ffb94b;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+    background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: linear-gradient(top, #fddb6f, #ffb94b);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+     -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    border-color: #d69e31 #e3a037 #d5982d #e3a037;
+    color: #8f5a0a;
+}
+
+
+
+#submit:hover,#submit:focus,#next:hover,#next:focus, #addColumn:hover,#addColumn:focus, #finish:hover,#finish:focus 
+
+{		
+    background-color: #fddb6f;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
+    background-image: -webkit-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -moz-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -ms-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -o-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: linear-gradient(top, #ffb94b, #fddb6f);
+}	
+
+#submit:active
+{		
+    outline: none;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+
+}
+
+#actions a
+{
+    color: #3151A2;
+}
+
+.apponlineerrors li{
+	color:#D46464;
+	list-style: none;
+}
+/*login section ends*/

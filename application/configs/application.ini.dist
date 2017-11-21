@@ -1,0 +1,92 @@
+[bootstrap]
+autoloaderNamespaces[] = "Ingot_"
+autoloaderNamespaces[] = "ZendX_"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+autoloadernamespaces.app = "App_"
+autoloadernamespaces.log = "Logs_"
+autoloadernamespaces.pagination = "Pagination_"
+autoloadernamespaces.base = "Base_"
+autoloadernamespaces.sis = "Sis_"
+autoloadernamespaces.0 = "Cms_"
+autoloadernamespaces.icampus = "icampus_"
+
+
+[production : bootstrap]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.params.displayExceptions = 1
+phpSettings.date.timezone = "Asia/Jakarta"
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+resources.frontController.moduleDirectory = APPLICATION_PATH "/modules"
+resources.modules[] =
+
+
+;##LAYOUT
+resources.layout.layout = "main"
+resources.layout.layoutpath = APPLICATION_PATH "/layouts/trisakti"
+
+;##Constant
+constants.APPLICATION_TITLE = "Student Information System"
+constants.APPLICATION_TITLE_SHORT = "SIS"
+constants.APPLICATION_ENTERPRISE = "Universitas Trisakti"
+constants.APPLICATION_ENTERPRISE_SHORT = "USAKTI"
+constants.PAGINATION_SIZE = 50
+constants.DOCUMENT_PATH = "/var/www/html/triapp/documents"
+constants.MAIN_PATH = "/var/www/html/triapp"
+;constants.APP_HOSTNAME = "203.223.157.192";
+constants.APP_HOSTNAME = "103.28.161.72";
+constants.ONNAPP_HOSTNAME = "www.spmb.trisakti.ac.id";
+
+resources.view[] =
+resources.view.helperPath.App_View_Helper = APPLICATION_PATH "/views/helpers"
+resources.locale.default = en
+
+
+; Loggers
+resources.log.stream.writerName             = "Stream"
+resources.log.stream.writerParams.stream    = APPLICATION_PATH "/logs/"
+resources.log.stream.writerParams.mode      = "a"
+resources.log.stream.filterName             = "Priority"
+resources.log.stream.filterParams.priority  = 4
+
+log.path               = APPLICATION_PATH "/logs/"
+log.partitionStrategy  = "context"
+log.partitionFrequency = "monthly"
+
+[staging : production]
+
+[testing : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.db.adapter = PDO_MYSQL
+resources.db.params.host = 192.168.200.202
+resources.db.params.username = root
+resources.db.params.password = @rum2527 
+resources.db.params.dbname = meteor_cmspro
+resources.db.params.charset = utf8
+;resources.db.params.unix_socket = "/var/lib/mysql/mysql.sock"
+database.params.driver_options.1002 = "SET NAMES utf8"
+resources.db.isDefaultTableAdapter = true
+resources.db.profiler.enabled       = true
+resources.db.profiler.class         = Zend_Db_Profiler_Firebug
+
+;## DB Master Edited Lagi
+resources.multidb.master.adapter = PDO_MYSQL
+resources.multidb.master.host = 192.168.200.202
+resources.multidb.master.username = root 
+resources.multidb.master.password = @rum2527
+resources.multidb.master.dbname = meteor_cmspro
+resources.multidb.master.charset = utf8
+;resources.multidb.master.unix_socket = "/var/mysql/lib/mysql.sock"
+resources.multidb.master.isDefaultTableAdaper = true
+resources.multidb.master.profiler.enabled       = false
+resources.multidb.master.profiler.class         = Zend_Db_Profiler_Firebug
+
+
+

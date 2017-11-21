@@ -1,0 +1,174 @@
+<?php
+//get locale
+$registry = Zend_Registry::getInstance();
+$locale = $registry->get('Zend_Locale');
+$this->locale = $locale->toString();
+
+if($locale == 'ar_YE'){
+	$this->direction = "rtl";
+	$this->float = "right";
+	$locale = 'ar';
+}else{
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}
+$lobjinitialconfigModel = new GeneralSetup_Model_DbTable_Initialconfiguration(); 
+$larrInitialSettings = $lobjinitialconfigModel->fnGetInitialConfigDetails(1);
+$this->College = empty($larrInitialSettings['CollegeAliasName']) ? "College":$larrInitialSettings['CollegeAliasName'];
+$this->Department =  empty($larrInitialSettings['DepartmentAliasName']) ? "Department":$larrInitialSettings['DepartmentAliasName'];
+$this->Subject = empty($larrInitialSettings['SubjectAliasName']) ? "Subject":$larrInitialSettings['SubjectAliasName'];
+$this->Course = empty($larrInitialSettings['CourseAliasName']) ? "Course":$larrInitialSettings['CourseAliasName'];
+$this->Program = empty($larrInitialSettings['ProgramAliasName']) ? "Program":$larrInitialSettings['ProgramAliasName'];
+$this->Branch = empty($larrInitialSettings['BranchAliasName']) ? "Branch":$larrInitialSettings['BranchAliasName'];
+?>
+<?  echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="<?php echo $this->locale; ?>"
+	dir="<?php echo $this->direction; ?>">
+<head>
+
+<!-- ///////////////////////// DOJO ////////////////////////// -->
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_<?php echo $locale;?>.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+
+<!-- ///////////////////////// DOJO ////////////////////////// -->
+
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/layout.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/simpletree.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/topmenu.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/style.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/left-menu.css'); ?>
+<?php
+if($this->direction == 'rtl'){
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:right;
+				}";
+	echo "#language{
+	 				left:10px;
+	 			}";
+
+	echo "#appTitle{
+	 				left: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-right: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:left;
+				text-align: left;
+				}";
+
+	echo "</style>";
+}else{
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:left;
+				}";
+	echo "#language{
+	 				right:10px;
+	 			}";
+
+	echo "#appTitle{
+	 				right: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-left: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:right;
+				text-align: right;
+				}";
+
+	echo "</style>";
+}
+
+?>
+</head>
+<body class="claro">
+	<div id="container">
+		<div id="header">
+			<div id="logo"></div>
+			<div id="appTitle"><?php echo $this->translate(APPLICATION_TITLE);?></div>
+		</div>
+	
+		<div id="menu" style=""><?php $auth = Zend_Auth::getInstance();?>
+			<div id="language">&nbsp;&nbsp <?php echo $this->translate("Language"); ?>: 
+				<select
+					style="width: 80px;" onchange="window.location = '?lang=' + this.options[this.selectedIndex].value">
+						<option value="ar"
+							<?php echo $this->locale=="ar_YE"?"selected='selected'":""; ?>>Arabic
+						</option>
+						<option value="en"
+							<?php echo $this->locale=="en_US"?"selected='selected'":""; ?>>English
+						</option>
+				</select>
+			</div>
+
+		<div id="body">
+			<!-- Begin Section Content-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td rowspan="2" valign="top">
+
+						</td>
+						<td valign="top">
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<!-- 
+							<div class="message toolbar">
+								<h2><?php echo $this->translate("University Setup"); ?></h2>
+								<div class="toolbar-button">
+									<ul>
+										<li>
+											<a href="#" onclick="javascript:edit(1)">
+												<span class="edit"></span>
+												<?php echo $this->translate("Edit"); ?>
+											</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#">
+												<span class="info"></span>
+												<?php echo $this->translate("Info"); ?>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<br>
+							-->
+							<table width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<tr>
+										<td valign="top"><?php echo $this->layout()->content; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- End Section Content-->
+		</div>
+		<div id="footer"><!-- Footer start --> <?php echo $this->translate("Copyright"); ?>&copy;<?php echo $this->translate(APPLICATION_ENTERPRISE) ;?> 
+		<!-- Footer end --></div>
+	</div>
+</body>
+</html>

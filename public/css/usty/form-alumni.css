@@ -1,0 +1,48 @@
+.form-container{
+  border: 1px dashed #ddd;
+  padding: 10px;
+  background: #f4f4f4 url(../../images/bg.gif);
+}
+
+.frmClass .buttons, .buttons {
+  background: url(../../images/button.gif) no-repeat #fff;
+  width: 122px;
+  height: 24px;
+  border: none;
+  font: normal 10pt Tahoma, arial;
+  margin-top: 5px;
+  margin-right: 17px;
+  cursor: pointer;
+  color: #fff;
+}
+.frmClass .nob {
+	border: none;
+}
+.frmClass td {
+	font-size: 9pt;
+	padding:5px 5px 5px 1px;
+}
+.frmClass input, .frmClass textarea, .frmClass select {
+	border: 1px solid #C0C0C0;
+	font-size: 8.5pt;
+}
+.frmClass a, .frmClass a:link, .frmClass a:visited{
+    text-decoration: none;
+    color: #f57d20;
+}
+.frmClass a:hover{
+  color: #000;
+}
+.agama div{
+  float: left;
+  margin-right: 3px;
+}
+
+.frmFront{
+  padding: 2px;
+}
+.text1{border: 1px solid #aeaeae; width: 120px; padding: 2px;}
+.button2{ background: #fff url(../../images/button2.gif) no-repeat top; vertical-align: top; border: none; width: 52px; height: 20px;
+font: bold 7pt Verdana, Arial; margin: 0; cursor: pointer; text-transform: uppercase;}
+
+

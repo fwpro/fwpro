@@ -1,0 +1,96 @@
+<?php
+//get locale
+$registry = Zend_Registry::getInstance();
+$locale = $registry->get('Zend_Locale');
+$this->locale = $locale->toString();
+
+if($locale == 'ar_YE'){
+	$this->direction = "rtl";
+	$this->float = "right";
+	$locale = 'ar';
+}else{
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}
+?>
+<?php  echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->locale; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_<?php echo $locale;?>.js"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/jquery-1.7.2.min.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/styke.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/style.css'); ?>
+<?php
+if($this->direction == 'rtl'){
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:right;
+				}";
+	echo "#language{
+	 				left:10px;
+	 			}";
+
+	echo "#appTitle{
+	 				left: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-right: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:left;
+				text-align: left;
+				}";
+
+	echo "</style>";
+}else{
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:left;
+				}";
+	echo "#language{
+	 				right:10px;
+	 			}";
+
+	echo "#appTitle{
+	 				right: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-left: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:right;
+				text-align: right;
+				}";
+
+	echo "</style>";
+}
+?>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+            <div id="logo"></div>
+            <div id="appTitle"><?php echo $this->translate(APPLICATION_TITLE);?></div>
+    </div>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+          <tr>
+                <td valign="top"><?php echo $this->layout()->content; ?></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

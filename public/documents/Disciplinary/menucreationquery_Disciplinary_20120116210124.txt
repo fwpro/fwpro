@@ -1,0 +1,32 @@
+
+INSERT INTO `tbl_mainmenu` (`Description`, `Uri`, `Head`, `Deleteflag`, `MenuOrder`, `iduser`)
+ VALUES ('Account Master', '/accountmaster', '9', '0', '4', '1');
+
+INSERT INTO `tbl_function` (`functionCode`, `functionName`) VALUES ('AccMTS', 'Account Master');
+
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('AccMTS', 'ADD');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('AccMTS', 'SAVE');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('AccMTS', 'SRCH');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('AccMTS', 'CLR');
+
+
+
+INSERT INTO `tbl_mainmenu` (`Description`, `Uri`, `Head`, `Deleteflag`, `MenuOrder`, `iduser`)
+ VALUES ('Relation Discount Details', '/relationdetail', '65', '0', '10', '1');
+
+INSERT INTO `tbl_function` (`functionCode`, `functionName`) VALUES ('RDISDL', 'Relation Discount Details');
+
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'ADD');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'SAVE');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'SRCH');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'CLR');
+
+INSERT INTO `tbl_mainmenu` (`Description`, `Uri`, `Head`, `Deleteflag`, `MenuOrder`, `iduser`)
+ VALUES ('Relation Discount Details', '/sfs/relationdetail', '17', '0', '9', '1');
+
+INSERT INTO `tbl_function` (`functionCode`, `functionName`) VALUES ('RDISDL', 'Relation Discount Details');
+
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'ADD');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'SAVE');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'SRCH');
+INSERT INTO `tbl_entitlement` (`functionCode`, `operationCode`) VALUES ('RDISDL', 'CLR');

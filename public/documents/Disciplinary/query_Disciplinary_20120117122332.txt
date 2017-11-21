@@ -1,0 +1,68 @@
+SELECT `inv`.`IdInvoice`, DATE_FORMAT(inv.InvoiceDt,'%d-%m-%Y') AS `Invoice Date`,
+	 `inv`.`InvoiceNo` AS `Inovice No`, 
+	`inv`.`InvoiceAmt` AS `Inovice Amount`, 
+	sum(paymnt.PaidAmount) AS `Paid Amount`, 
+	inv.InvoiceAmt-sum(paymnt.PaidAmount) AS `Balance Amount`, 
+	CONCAT_WS(' ',IFNULL(stud.FName,''),IFNULL(stud.MName,''),IFNULL(stud.LName,'')) AS `Student Name
+`FROM `tbl_sfsinvoicemaster` AS `inv` 
+LEFT JOIN `tbl_paymentmaster` AS `paymnt` ON inv.IdInvoice = paymnt.IdInvoice 
+JOIN `tbl_studentapplication` AS `stud` ON inv.IdStudent=stud.IDApplication 
+WHERE (paymnt.idAccountHead =0 ) GROUP BY `inv`.`InvoiceNo` 
+HAVING (sum(paymnt.PaidAmount) < inv.InvoiceAmt) 
+ORDER BY `inv`.`InvoiceNo` ASC
+
+
+Select InvoiceNo from 
+
+
+
+=========================================
+
+
+DROP TABLE IF EXISTS `sfs_dojo`.`tbl_sfsinvoicemaster`;
+CREATE TABLE  `sfs_dojo`.`tbl_sfsinvoicemaster` (
+  `IdInvoice` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `IdStudent` bigint(20) unsigned NOT NULL,
+  `InvoiceNo` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `InvoiceDt` date DEFAULT NULL,
+  `InvoiceAmt` decimal(12,2) NOT NULL,
+  `MonthYear` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AcdmcPeriod` bigint(20) unsigned NOT NULL,
+  `Naration` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdDate` datetime NOT NULL,
+  `UpdUser` bigint(20) unsigned DEFAULT NULL COMMENT 'FK to tbl_user',
+  `Active` binary(1) DEFAULT NULL COMMENT '0:No, 1:Yes',
+  `Approved` binary(1) NOT NULL DEFAULT '0',
+  `idsponsor` bigint(20) NOT NULL DEFAULT '0',
+  `Currency` bigint(20) NOT NULL,
+  PRIMARY KEY (`IdInvoice`),
+  KEY `FK_tbl_SFSInvoiceMaster_IdStudent` (`IdStudent`),
+  KEY `FK_tbl_CourseMaster_UpdUser` (`UpdUser`),
+  CONSTRAINT `FK_tbl_SFSInvoiceMaster_IdStudent` FOREIGN KEY (`IdStudent`) REFERENCES `tbl_studentapplication` (`IDApplication`),
+  CONSTRAINT `FK_tbl_SFSInvoiceMaster_UpdUser` FOREIGN KEY (`UpdUser`) REFERENCES `tbl_user` (`iduser`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+//----------------amruth  pending creditials-----
+SELECT im.InvoiceNo,pm.RecieptNo,cn.CreditBillNo,CONCAT(sa.FName,' ', IFNULL(sa.MName,' '),' ',IFNULL(sa.LName,' ')) AS Name, sum(IFNULL(cn.Amount,'0')) AS   AlreadyCredited  ,pm.EffectiveDate,pm.PaidAmount,pm.idPaymentMaster,pm.IDApplication,pm.IdInvoice ,
+pm.EffectiveDate, pm.PaidAmount-sum(IFNULL(cn.Amount,'0')) AS Pending
+  FROM tbl_paymentmaster pm 
+  INNER JOIN tbl_sfsinvoicemaster im ON im.IdInvoice=pm.IdInvoice 
+  INNER JOIN tbl_studentapplication sa ON sa.IDApplication=pm.IDApplication 
+  LEFT JOIN tbl_creditnote cn ON cn.IdPaymentMaster=pm.idPaymentMaster 
+  WHERE pm.idAccountHead !=0 and pm.Approved=1 
+  GROUP BY pm.idPaymentMaster HAVING Pending>0 
+  
+  
+  
+  
+  //-----------------------tbl_specialrole----------------
+  CREATE TABLE `sfs_dojo_demo`.`tbl_specialroles` (`idSpecialRole` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY, `idUser` BIGINT(20) NOT NULL, `idRole` BIGINT(20) NOT NULL, `fromDate` DATE NOT NULL, `toDate` DATE NOT NULL, `description` VARCHAR(200) NOT NULL, `UpdDate` DATETIME NOT NULL, `UpdUser` BIGINT(20) NOT NULL) ENGINE = InnoDB;
+  //---------------------------------------------------
+  
+  
+  
+  fnUpdateAmountAcc
+>/batchbillingdiscountajax 443-4103812

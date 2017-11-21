@@ -1,0 +1,22 @@
+<style type="text/css">
+
+
+
+</style>
+ <?php 
+ echo $this->title;
+ ?>
+ <table border=1>
+ <tr><td>NIM</td><td>NAMA</td><td>IPK</td></tr>
+ <?php 
+ foreach ($this->listOfMhs as $value) {
+ 	?>
+ 	<tr><td><?php echo $value['NIM']?></td>
+ 	<td><?php echo $value['NAMA']?></td>
+ 	<td><?php echo $value['IPK']?></td></tr>
+ 	<?php 
+ }
+ 
+ 
+ ?>
+ </table>

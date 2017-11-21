@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title> TRISAKTI - SIS</title>
+<link rel="shortcut icon" href="<?php  echo $this->baseUrl();?>/images/animated_favicon1.gif" >
+<link href="<?php  echo $this->baseUrl();?>/css/usty/usakti.css" rel="stylesheet" type="text/css" />
+<link rel="StyleSheet" href="<?php  echo $this->baseUrl();?>/css/usty/dtree.css" type="text/css" />
+<link href="<?php  echo $this->baseUrl();?>/css/usty/form-alumni.css" rel="stylesheet" type="text/css" />
+
+<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/tabcontent.js" type="text/javascript"></script>
+<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/JSCookMenu.js" type="text/javascript"></script>
+<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/theme.js" type="text/javascript"></script>
+<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/register-alumni.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'en'"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_en.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+<style type="text/css">
+	<!--
+	body{
+		font-family:Verdana,Helvetica;
+		font-size:11px;
+	}
+	.zend_form{
+		width:250px;
+		padding:0;
+		overflow:auto;
+	}
+
+	.zend_form dt{
+		padding:0;
+		clear:both;
+		width:80px;
+		float:left;
+		text-align:right;
+		margin:5px 5px 5px 0;
+	}
+
+	.zend_form dt label:after{
+		content: " : ";
+	}
+
+	.zend_form dd{
+		padding:0;
+		float:left;
+		width:150px;
+		margin:5px 2px 5px 0;
+	}
+
+	.zend_form p{
+		padding:0;
+		margin:0;
+	}
+
+	.zend_form input, .zend_form textarea{
+		margin:0 0 2px 0;
+		padding:0;
+	}
+
+	.zend_form label.view{
+		font-weight: bold;
+	}
+
+	.submit{
+		float:right;
+	}
+
+	.required {
+		font-weight: bold;
+		font-size: 11px;
+	}
+
+	.optional {
+		font-style: italic;
+	}
+
+	.zend_form .errors{
+		margin-left:0px;
+		-moz-padding-start: 0px;
+	}
+
+	.zend_form .errors li{
+		color: red;
+		list-style: none;
+		margin-left:0px;
+	}
+
+	input[type=text], input[type=password]{
+		width:150px;
+		background-color: #FAFFBD;
+		color: black;
+		margin: 0 0 2px 0;
+		padding: 0;
+	}
+
+	#header{
+		background: url(<?php echo $this->baseUrl(); ?>/images/background-unity.png) repeat-x;
+	}
+
+	#logo{
+		/*background: url(<?php echo $this->baseUrl(); ?>/images/ustlogo.png) no-repeat;
+		height: 78px;
+		width: 214px;*/
+	}
+
+	#footer{
+		text-align: center;
+		background-color:#fff;
+		font-family:Verdana,Helvetica;
+		font-size: 10px;
+	}
+
+	input[type=submit], button{
+		border-color:#EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+		border-style:solid;
+		border-width:1px;
+		color:#565656;
+		cursor:pointer;
+		display:block;
+		//float:left;
+		font-family:"Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+		font-size:100%;
+		font-weight:bold;
+		line-height:130%;
+		margin:2px 7px 2px 0;
+		padding:5px 10px 6px 7px;
+		text-decoration:none;
+	}
+	input[type=reset], button{
+		margin:5px 0;
+		background-color:#F5F5F5;
+		border-color:#EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+		border-style:solid;
+		border-width:1px;
+		color:#565656;
+		cursor:pointer;
+		display:block;
+		//float:left;
+		font-family:"Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+		font-size:100%;
+		font-weight:bold;
+		line-height:130%;
+		margin:2px 7px 2px 0;
+		padding:5px 10px 6px 7px;
+		text-decoration:none;
+	}
+	input[type=submit]:hover,  button:hover{
+		background-color:#E6EFC2;
+	}
+
+	-->
+	</style>
+<SCRIPT LANGUAGE="JavaScript">
+
+dojo.addOnLoad(function() {
+	//dijit.byId('IdUniversity').set('value','');
+	//dijit.byId('IdUniversity').set('placeHolder','Select');
+
+	dijit.byId('username').focus();
+
+});
+var dialogBox = new dijit.Dialog;
+
+function refreshpage() {
+	dialogBox.hide();
+	window.location.href = "<?php echo $this->baseUrl()."/application/manualapplication/studentapplicationlist/id/".$this->IdApplication?>";
+}
+
+function dialogText (title,content) {
+	<?php $iframeurl2 = "<iframe border = 0 width=480px height=85px src='".$this->baseUrl()."/forgotpassword'></iframe>";?>
+    dialogBox.titleNode.innerHTML = title;
+    dialogBox.setContent("<?php echo $iframeurl2 ?>");
+    dialogBox.set("style", "width: 500px;height:150px;");
+    dialogBox.show();
+}
+
+/***********************************
+*   http://javascripts.vbarsan.com/
+*   This notice may not be removed
+***********************************/
+
+//-- Begin Scroller's Parameters and message -->
+//scroller width: change to your own;
+var wwidth=850;
+
+//scroller height: change to your own;
+var wheight=39;
+
+//background color: change to your own;
+var wbcolor="";
+
+//scroller's speed: change to your own;
+var sspeed=2.5;
+var restart=sspeed;
+var rspeed=sspeed;
+
+//text: change to your own
+
+
+
+var sizeupw=0;var operbr=navigator.userAgent.toLowerCase().indexOf('opera');if(operbr==-1&&navigator.product&&navigator.product=="Gecko"){var agt = navigator.userAgent.toLowerCase();var rvStart = agt.indexOf('rv:');var rvEnd = agt.indexOf(')', rvStart);var check15 = agt.substring(rvStart+3, rvEnd);if(parseFloat(check15)>=1.8) operbr=0;}if (navigator.appVersion.indexOf("Mac")!=-1)operbr=0;
+function goup(){if(sspeed!=rspeed*8){sspeed=sspeed*2;restart=sspeed;}}
+function godown(){if(sspeed>rspeed){sspeed=sspeed/2;restart=sspeed;}}
+
+//-- end Algorithm -->
+</script>
+
+
+</head>
+<body class = "claro">
+
+<!--kepala -->
+<div class="kepaladasar">
+<div class="kepala">
+
+<div class="kepalakiri">
+<div class="logo"><a href="./"><img src="<?php echo $this->baseUrl(); ?>/images/logo.gif" border="0" /></a></div>
+<div class="logotext">Universitas<br>Trisakti</div>
+
+</div>
+
+
+<div class="kepalakanan">
+
+<div class="navatas">
+<!--inbox -->
+
+<div class="clearit"></div>
+
+<div class="linkadd"></div>
+
+<div class="clearit"></div>
+
+<div class="clearit"></div>
+
+</div>
+<div class="clearit"></div>
+</div>
+
+</div>
+</div>
+
+
+
+<!--badan atas-->
+<div class="badan">
+<div style="padding-top:10px;"></div>
+<div align="left" class="menuatas">
+<span id="myMenuID">
+<script type="text/javascript">
+
+		var myMenu =
+		[
+			_cmSplit,
+			[null,'Home','http://www.ust.edu','target = _blank',null],
+			_cmSplit,
+
+			_cmSplit,
+				[null,'Online Application','<?php echo $this->baseUrl();?>/onlineapplication/login',null,'About Trisakti'],
+			_cmSplit,
+				[null,'Agent','<?php echo $this->baseUrl();?>/agentlogin/login',null,'About Trisakti'],
+			_cmSplit,
+				[null,'Placement Test Result','<?php echo $this->baseUrl();?>/result/confirmation',null,'About Trisakti'],
+			_cmSplit,
+
+			_cmSplit,
+				[null,'Student Login','<?php echo $this->baseUrl();?>/studentlogin/index',null,'About Trisakti'],
+			_cmSplit,
+
+			_cmSplit,
+
+		];
+		cmDraw ('myMenuID', myMenu, 'hbr', cmThemeOffice, 'ThemeOffice');
+</script>
+
+</span>
+</div>
+
+<div style="margin-top:10px;"></div>
+<!-- marquee -->
+
+<!--
+<div id=marquee>
+
+<script language="JavaScript">document.write('<table align="center" border="0"><tr><td width='+wwidth+'px>');if(document.getElementById || document.all){document.write('<span style="width:'+wwidth+'px;"><div style="position:relative;overflow:hidden;width:'+wwidth+'px;height:'+wheight+'px;clip:rect(0 '+wwidth+'px '+wheight+'px 0);background-color:'+wbcolor+';" onMouseover="sspeed=0;" onMouseout="sspeed=restart">');if(operbr!=-1)document.write('<div id="operaslider" style="position:absolute;visibility:hidden;"></div>');document.write('<div id="wslider" style="position:absolute;height:'+wheight+'px;"></div></div></span>')}</script>
+<ilayer width=&{wwidth}; height=&{wheight}; name="wslider1" bgcolor=&{wbcolor};><layer name="wslider2" width=&{wwidth}; height=&{wheight}; onMouseover="sspeed=0;" onMouseout="sspeed=restart"></layer></ilayer></td></tr></table>
+
+</div>
+ -->
+
+
+
+<div style="margin-top:2px;"></div>
+
+<!--kolom 2-->
+<!--beginkolomkiri -->
+
+<div class="kolomkiri">
+<div style="margin-top:-2px;"></div>
+
+	<!-- faculty area ends -->
+<div class="clearit"></div>
+
+
+<!--kalender -->
+<!--<div class="box_head3" style="background:url(images/headbox_kalender.gif) no-repeat;">Kalendar<br />Kegiatan</div>-->
+<div style="margin-top:5px;"></div>
+<div>
+<!--<div class="bulan"><a href="#">&lt;&lt;</a> Februari 2008 <a href="#">&gt;&gt;</a></div>-->
+<!-- event area starts -->
+
+
+	<!-- event area ends -->
+
+<!--
+
+comment perpustakaan
+<div class="box_head3" style="background:url(images/headbox_perpustakaan.gif) no-repeat;">Perpustakaan<br />Usakti</div>
+<div style="margin-top:5px;"></div>
+<div class="teks_judul"><a href="#">FORMULASI DAN EVALUASI TABLET SULFASOMIDIN</a></div>
+<div class="teks_biasa">Abstrak: Telah dilakukan pembuatan tablet sulfasomidin dengan teknik </div>
+<div class="batasputus"></div>
+<div class="teks_judul"><a href="#">TEKTONIK SULAWESI SELATAN DENGAN ACUAN KHUSUS CIRI-CIRI HIMPUNAN BATUAN DAERAH BANTIMALA</a></div>
+<div class="teks_biasa">Abstrak: Batuan yang tersingkap di daerah Bantimala dan sekitarnya merupakan</div>
+<div class="box_foot2"><a href="#"><img src="images/icon_win.gif" border="0" /></a><a href="#"><img src="images/icon_rss.gif" border="0" /></a></div>
+-->
+</div>
+
+<div style="margin-top:10px;"></div>
+<!-- banner left starts -->
+
+		<!-- banner left ends -->
+
+<div style="margin-top:10px;"></div>
+
+</div>
+<!--endkolomkiri -->
+
+<!--beginkolomtengah -->
+<div class="kolomtengah">
+
+<br class="clearit" />
+<div class="clearit"></div>
+<div style="margin-top:1px;"></div>
+
+<!--banner 468x60 -->
+<div align="center"><p>
+<div style='clear:both;'></div><div style='margin-top:20px;'></div></div>
+
+
+<table >
+<tr><td width='76' valign='top'>
+	<div style="width:425px; height:250px; margin:10% auto 0; background-image: url(<?php echo $this->baseUrl(); ?>/images/login1.png);">
+
+		<div style="padding-left: 150px;">
+			<div id="logo" style="margin: 0">
+			<br>
+				<table border="0">
+					<tr>
+						<td><img src="<?php echo $this->baseUrl(); ?>/images/trisakti-logo.png" /></td>
+					</tr>
+				</table>
+			</div><br>
+			<div style="margin-left: 10px;">
+				<form onreset="fnResetForm()" dojoType="dijit.form.Form" id="myform" name="myform" action = "" method= "post" >
+					<script type="dojo/method" event="onSubmit" >
+						if (this.validate()) {
+							return true;
+						} else {
+							return false;
+						}
+					</script>
+
+						<table align = "center" cellspacing="6px;">
+							<tr>
+								<td class = "required" align="right"> Username :</td>
+								<td class = "dataObjectStyle" >
+									<?php echo $this->lobjform->username;?>
+								</td>
+							</tr>
+							<tr>
+								<td class = "required" align="right">Password :</td>
+								<td class = "dataObjec	 <?php ////	Copyright &copy;echo APPLICATION_ENTERPRISE; ?>tStyle"><?php echo $this->lobjform->password;?></td>
+							</tr>
+							<tr>
+								<td class = "required" align="right">University&nbsp;:</td>
+								<td><?php echo $this->lobjform->IdUniversity;?></td>
+							</tr>
+
+							<tr>
+								<td align = "left"></td>
+								<td align = "left">
+									<?php echo $this->lobjform->Login; ?>
+									<?php echo $this->lobjform->Reset; ?>
+								</td>
+							</tr>
+							<tr>
+								<td align = "left"></td>
+								<td align = "left">
+									<a href="#" onclick="dialogText('Forgot Password')">
+										<span style="font-weight:bold;font-size:12px;color:#008000"><u>Forgot Password</u></span>
+									</a>
+								</td>
+							</tr>
+						</table>
+			</form>
+			</div>
+		</div>
+	</div>
+</td>
+</tr>
+</table>
+
+
+
+
+<div class="clearit"></div>
+<div style="margin-top:20px;"></div>
+
+<!--banner 468x60 -->
+
+
+<div class="clearit"></div>
+<div style="margin-top:20px;"></div>
+
+
+<div class="clearit"></div>
+
+
+<div class="clearit"></div>
+<div style="margin-top:20px;"></div>
+
+<!--banner 468x60 -->
+<div align="center">
+</div>
+
+<div class="clearit"></div>
+<div style="margin-top:20px;"></div>
+
+
+
+<!--profil guru besar -->
+<div style="float:left; width:240px;">
+
+<div style="margin-top:5px;"></div>
+</div>
+
+<!--profil alumnus -->
+<div style="float:right; width:240px;">
+<div class="box_head2" style="background:url(images/headprofilalumnus.gif) no-repeat;">Alumnae<br />Profile</div>
+<div style="margin-top:5px;"></div></div>
+
+<br class="clearit" />
+<div class="clearit"></div>
+</div>
+<!--endkolomtengah -->
+
+
+<br class="clearit" />
+
+<div class="clearit"></div>
+</div>
+
+
+
+<!--kaki -->
+<div class="kakidasar">
+<div class="kaki">
+<div style="float:left;"></div>
+<div align="right" style="text-align:right;"></div>
+
+<div align="right" style="text-align:right; padding-top:15px;">Copyright &copy; 2011 MTCSB. All rights reserved.</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
+

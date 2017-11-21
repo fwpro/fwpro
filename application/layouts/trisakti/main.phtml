@@ -1,0 +1,81 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>My Site</title>
+</head>
+<body>
+<?php $this->jQuery()->enable();
+		$this->jQuery()->setVersion('1.9.1');
+		$this->jQuery()->useCdn(false);
+	 	//$this->jQuery()->setLocalPath($this->baseUrl().'/js/jquery/jquery-1.5.1.min.js');
+	 	$this->jQuery()->setLocalPath($this->baseUrl().'/js/jquery/jquery.19.1.min.js');
+		
+		$this->jQuery()->uiEnable();
+		$this->jQuery()->setUiVersion('1.10.2');
+		$this->jQuery()->useUiCdn(false);
+		$this->jQuery()->addStylesheet($this->baseUrl().'/css/jqueryui/smoothness/jquery-ui.css');
+		//$this->jQuery()->setUiLocalPath($this->baseUrl().'/js/jquery/jquery-ui-1.8.18.min.js');
+		$this->jQuery()->setUiLocalPath($this->baseUrl().'/js/jquery/jquery-ui.1.10.2.min.js');
+		
+		//echo $this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/timepicker/timePicker.css');
+		//echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/timepicker/jquery.timepicker.js');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/perifer-timePicker/jquery.timePicker.js');
+		$this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/perifer-timePicker/timePicker.css');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/multiselect-1.12/jquery.multiselect.min.js');
+		$this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/multiselect-1.12/jquery.multiselect.css');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/colorbox/jquery.colorbox-min.js');
+		$this->headScript()->appendFile($this->baseUrl().'/js/jsgl.min.js');
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery.bt.min.js');
+		$this->headLink()->prependStylesheet($this->baseUrl().'/css/colorpicker.css');
+		$this->headLink()->prependStylesheet($this->baseUrl().'/css/colorbox/colorbox.css');
+		$this->headLink()->prependStylesheet($this->baseUrl().'/css/ltr_layout.css');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/jeditable/jquery.jeditable.js');
+		
+		$this->headLink()->prependStylesheet($this->baseUrl().'/js/jquery/plugin/fancybox/jquery.fancybox.css');
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/fancybox/jquery.fancybox.js');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/baloontip/jquery.balloon.js');
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/tablednd/jquery.tablednd.js');
+		
+		$this->headScript()->appendFile($this->baseUrl().'/js/jquery/plugin/number/jquery.number.min.js');
+	?>
+	
+	<?php 
+	echo $this->jQuery();
+	
+	echo $this->headLink();
+	echo $this->headScript();
+	?>
+<table width="100%">
+<tr bgcolor="Blue" rowspan="5"><td align="center" colspan="2"><H1><font color="ligtblue"><?php echo 'TEKNIK INFORMATIKA'?></font></H1></td></tr>
+<tr><td width="20%" bgcolor="LightBlue">
+<?php  for ($i=1;$i<=5;$i++) {
+			if ($i==1) echo "<a href='/akademik/record/list-mahasiswa'>Entri Mahasiswa</a>";
+			else echo "menu".$i;
+			echo "<br>";
+	}?>
+</td><td>
+<?php
+    // fetch 'content' key using layout helper:
+	
+    echo $this->layout()->content;
+    
+    // fetch 'foo' key using placeholder helper:
+   // echo $this->placeholder('Zend_Layout')->foo;
+    // fetch layout object and retrieve various keys from it:
+ ?>  
+  	</td> </tr>
+	<tr bgcolor="Black"><td align="center" colspan="2"><font color="white">Universitas Trisakti</font></td></tr>
+	 
+	
+ </table> 
+ 
+</body>
+</html>

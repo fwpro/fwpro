@@ -1,0 +1,8 @@
+2012-08-08T15:12:05+05:30 NOTICE (5):  landscape		New Semester Landscape Add		::1			Success			1
+2012-08-08T15:13:21+05:30 NOTICE (5):  landscape		Semester Landscape Edit Id=111		::1			Success			1
+2012-08-18T14:46:52+05:30 NOTICE (5):  landscape		Semester Landscape Edit Id=117		127.0.0.1			Success			1
+2012-08-18T15:45:24+05:30 NOTICE (5):  landscape		New Semester Landscape Add		127.0.0.1			Success			1
+2012-08-18T15:47:18+05:30 NOTICE (5):  landscape		New Semester Landscape Add		127.0.0.1			Success			1
+2012-08-18T15:53:17+05:30 NOTICE (5):  landscape		New Semester Landscape Add		127.0.0.1			Success			1
+2012-08-18T15:55:04+05:30 NOTICE (5):  landscape		Semester Landscape Edit Id=122		127.0.0.1			Success			1
+2012-08-18T15:55:15+05:30 NOTICE (5):  landscape		Semester Landscape Edit Id=122		127.0.0.1			Success			1

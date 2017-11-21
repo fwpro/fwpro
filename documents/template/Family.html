@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="id" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>DAFTAR KELUARGA</title>
+<style type="text/css">
+.auto-style1 {
+	text-align: center;
+}
+.auto-style4 {
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+.auto-style5 {
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+}
+.auto-style6 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+.auto-style7 {
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+</style>
+</head>
+
+<body>
+<?php global $familis, $employee?>
+<p class="auto-style1">&nbsp;</p>
+<p class="auto-style1">&nbsp;</p>
+<p class="auto-style1">&nbsp;</p>
+<p class="auto-style5">DAFTAR KELUARGA</p>
+<p class="auto-style1">&nbsp;</p>
+<p class="auto-style4">Nama Karyawan&nbsp;&nbsp;&nbsp; :&nbsp;<?php echo $employee['NAMA']?></p>
+<p class="auto-style4">NIK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+: <?php echo $employee['NIK'] ?></p>
+<p class="auto-style4">Unit Kerja&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+: <?php echo $employee['NAMA_UNIT'] ?></p>
+
+<table align="left" border="1" cellspacing="0" style="width: 100%">
+	<tr bgcolor="#C0C0C0">
+		<td bgcolor="#C0C0C0" class="auto-style7" style="width: 44px">No</td>
+		<td class="auto-style7" style="width: 312px">Nama</td>
+		<td class="auto-style7" style="width: 80px">Hubungan</td>
+		<td class="auto-style7">Tmp Lahir</td>
+		<td class="auto-style7">Tgl Lahir</td>
+	</tr>
+	<?php 
+	if isset($familis) {
+		foreach ($familis as $family) ?>
+	<tr>
+		<td class="auto-style6" style="width: 44px">&nbsp;<?php echo $count ?></td>
+		<td class="auto-style6" style="width: 312px">&nbsp;<?php echo $family['NAMA'] ?></td>
+		<td class="auto-style6" style="width: 80px"><?php echo $family['HUB_KELUARGA'] ?></td>
+		<td class="auto-style6">&nbsp;&nbsp;<?php echo $family['TEMPAT_LAHIR'] ?></td>
+		<td class="auto-style6">&nbsp;<?php echo $family['TGL_LAHIR'] ?></td>
+	</tr>
+	<?php 
+	$count++;
+	endforeach;
+	}
+	?>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

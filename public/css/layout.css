@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#container {
+	min-height: 100%;
+	position: relative;
+}
+
+#header {
+	height: 80px;
+}
+
+#body {
+	padding: 10px;
+	padding-bottom: 15px; /* Height of the footer */
+}
+
+#footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 15px; /* Height of the footer */
+}
+
+.tip {
+	background: none repeat scroll 0 0 #1D1D1D;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	display: none;
+	padding: 10px;
+	position: absolute;
+	z-index: 1000;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 400;
+}
+
+.hidden { display: none; }
+
+#allocationpopup {overflow-x: hidden;}
+#allocationpopup h1 { padding: 10px; margin: 0; background: #C5EAFF; color:#000; font-weight: normal; }
+#cboxContent { padding: 20px; border: 5px solid #C5EAFF; }
+#cboxContent select { padding: 2px!important;
+height: auto; border: 2px solid #ddd; background-color: #eee; }
+.bookingTable { background-color: #eee; }
+.bookingTable td { vertical-align: middle; padding: 2px 5px;  }
+.bookingTable td h1 { margin: 0; padding: 0; background: none!important; color:#555!important; }
+
+.roomTable { border: 2px dashed #ddd; }
+.roomTable td { padding: 1px 2px; }
+.roomTable td h1 {  background: #ddd!important; color:#555!important; }
+.roomTable td h3 {  background: none!important; color:#000!important; margin:10px 0; padding: 0; font-weight: normal; text-align: center; text-transform: capitalize; }
+#roomallocation input[type=button], input.NormalBtn { background: #A3D5F5; color:#222; padding: 5px 15px; }
+#roomallocation input[type=button], input.NormalBtn { background: #A3D5F5; color:#222; padding: 5px 15px; }
+#test_pop { position: absolute;
+top: -21px;
+right: -21px; }
+.splitRoom { display: inline-block; margin-top: 10px; }
+#reservedseat {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #660000;
+}

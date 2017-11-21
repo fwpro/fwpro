@@ -1,0 +1,81 @@
+//2014/02/20 to cater activity based on program - Jasdy
+ALTER TABLE `tbl_activity_calender` ADD `IdProgram` INT NULL DEFAULT NULL COMMENT 'if null activity is applied to all program';
+
+//2014-01-20 Cater Allow program to add n drop 
+ALTER TABLE `tbl_program` ADD `Allowreg` TINYINT NOT NULL DEFAULT '0' AFTER `Active`;
+
+//2014-01-20 Cater Child-parent in block kandscape
+ALTER TABLE `tbl_landscapeblocksubject` ADD `parentId` INT NOT NULL DEFAULT '0' AFTER `coursetypeid`;
+
+//2014-01-20 ajaque
+ALTER TABLE `tbl_course_tagging_group` ADD `maxstud` INT(4) NOT NULL DEFAULT '50' AFTER `GroupCode`;
+
+//2015-01-18 - jasdy
+ALTER TABLE `tbl_activity` ADD `status` TINYINT( 1 ) NOT NULL DEFAULT '0' COMMENT '0 : not active. 1: active' AFTER `ActivityColorCode` ;
+
+//2014-01-15 -alif
+Table: payment_main,credit_note, refund
+add column IdStudentRegistration
+
+
+//2014-01-09 - alif
+Table: invoice main
+add column IdStudentRegistration
+
+//2013-12-30 - alif
+add table fee_resit
+
+//2013-10-30 -alif
+add table exam_group_attendance
+
+//2013-10-17 -alif
+add table: exam_group, exam_group_student, exam_group_supervisor
+
+//Changes on 2013-10-07 by alif
+Table course_group_attendance
+add column lecturer_activity, student_assignemnt and evaluation
+
+//Changes on 2013-09-30 by alif
+Table tbl_course_tagging_group
+add column GroupName
+
+//Changes on 2013-09-26 by Pak Agung (update by alif)
+Table : tbl_universitymaster
+add column Univ_code_EPSBED
+
+Table : tbl_program
+add column Program_code_EPSBED, Strata_code_EPSBED
+
+//Changes on 2013-08-30 by alif
+Table : student_profile
+add column appl_address_rw, appl_caddress_rw, appl_kecamatan, appl_kelurahan, appl_ckecamatan, appl_ckelurahan
+change address all to nullable
+
+//Changes on 2013-08-28 by alif
+Table : student_profile
+add column appl_name_kartu, appl_address_rt, appl_caddress_rt, burekol_verify_date, burekol_verify_by
+
+//Changes on 2013-07-4 by alif
+Table : payment_main
+add column slip_transaction_reference
+
+
+//Changes on 2013-06-28 by alif
+Table : payment_import
+Add table
+
+//Changes on 2013-06-27 by yatie
+
+Table : applicant_profile
+Add Column last : appl_role (tiny integer, default: 0)
+Comment - 0:appplicant 1:Student
+
+Table : tbl_studentregistration
+Add Column after IdProgram : IdProgMajoring (Integer,default: 0)
+Comment - FK to tbl_programmajoring
+
+Table : tbl_studentregsubject
+Add Column after semesterlevel  : IdLandscapeSub (Integer,default: 0)
+Comment - FK to tbl_landscapesubject
+
+//End Changes on 2013-06-27//

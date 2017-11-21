@@ -1,0 +1,40 @@
+- (NSMutableData *)createRequestForeMail:(NSString *)strFrom :(NSString *)strRecp :(NSString *)strSub :(NSString *)strBody
+{
+	
+	NSString *strSOAPMessage = [NSString stringWithFormat:
+								@"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+								"<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+								"<soap:Body>\n"
+								"<fnSendMail xmlns=\"http://QIA/\">\n"
+								"<strFrom>%@</strFrom>\n"
+								"<strRecp>%@</strRecp>\n"
+								"<strSub>%@</strSub>\n"
+								"<strBody>%@</strBody>\n"
+								"</fnSendMail>\n"
+								"</soap:Body>\n"
+								"</soap:Envelope>\n",strFrom,strRecp,strSub,strBody];
+	// NSLog(@"%@",strSOAPMessage);
+	
+	NSURL *url = [NSURL URLWithString:@"http://www.qualityinaction.net/IPhone.asmx"];
+	NSMutableURLRequest *SOAPRequest = [NSMutableURLRequest requestWithURL:url];
+	
+	
+	[SOAPRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+	[SOAPRequest addValue: @"http://QIA/fnSendMail" forHTTPHeaderField:@"SOAPAction"];
+	[SOAPRequest setHTTPMethod:@"POST"];
+	[SOAPRequest setHTTPBody: [strSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+	
+	NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:SOAPRequest delegate:self];
+	
+	if( urlConnection )
+	{
+		webData = [[NSMutableData data] retain];
+	}
+	else
+	{
+		// NSLog(@"urlConnection is NULL");
+	}
+	
+    return webData;	
+	
+}

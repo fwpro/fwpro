@@ -1,0 +1,13 @@
+<VirtualHost *:10081>
+	ServerName	www.localphpmyadmin.com
+	DocumentRoot	"C:\Program Files\Zend\phpMyAdmin"	
+	<Directory "C:\Program Files\Zend\phpMyAdmin">
+		AllowOverride All
+		Allow from all
+	</Directory>
+
+	DirectoryIndex	"index.php"
+
+	ErrorLog	"logs/zpm-err.log"
+	CustomLog	"logs/zpm-com.log" common
+</VirtualHost>

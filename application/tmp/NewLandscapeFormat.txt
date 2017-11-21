@@ -1,0 +1,34 @@
+Core Major	142	Yes					
+Elective	2	No					
+xxxxx							
+1	1	GBH111	Bioetika	BIOETHICS	5	Core Major	YES
+1	1	GBH112	Bahasa		5	Core Major	YES
+1	1	GGD113	Sel dan Jaringan		5	Core Major	YES
+1	1	GGD114	Syaraf dan Muskuloskeletal 		5	Core Major	YES
+2	2	GGD211	Sistem Organ Dalam Tubuh		5	Core Major	YES
+2	2	GGD212	Dental Anatomi dan Bahan Kedokteran Gigi I		5	Core Major	YES
+2	2	GGD213	Sistem Stomatognati dan Kariologi		5	Core Major	YES
+2	2	GMP214	Ilmu Kesehatan Gigi Masyarakat Pencegahan 1		5	Core Major	YES
+3	3	GGD311	Bahan Kedokteran Gigi II		5	Core Major	YES
+3	3	GBH312	"Metodologi Penelitian, Penulisan Ilmiah dan Biostatistik"		5	Core Major	YES
+3	3	GGD313	Tumbuh Kembang		5	Core Major	YES
+3	3	GGD314	Penyakit Infeksi dan Non Infeksi		5	Core Major	YES
+4	4	GGD411	Farmakoterapi		5	Core Major	YES
+4	4	GGD412	Pemeriksaan Penunjang untuk Diagnostik		5	Core Major	YES
+4	4	GGK413	Penatalaksanaan Kelainan Jaringan Lunak Mulut		5	Core Major	YES
+4	4	GGK414	Penatalaksanaan Kelainan Jaringan Penyanggah Mulut		5	Core Major	YES
+5	5	GMP511	Ilmu Kesehatan Gigi Masyarakat Pencegahan 2		5	Core Major	YES
+5	5	GGK512	Penatalaksanaan Kelainan Jaringan Keras Mahkota Gigi		5	Core Major	YES
+5	5	GGK513	Penatalaksanaan Kelainan Gigi dan Mulut Anak		5	Core Major	YES
+5	5	GGK514	Penatalaksanaan Kehilangan Gigi I		5	Core Major	YES
+6	6	GGK611	Penatalaksanaan Bedah Mulut Sederhana		5	Core Major	YES
+6	6	GGK612	Penatalaksanaan Kehilangan Gigi II		5	Core Major	YES
+6	6	GGK613	Penatalaksanaan Kelainan Pulpa dan Periapikal		5	Core Major	YES
+6	6	GGK614	Penatalaksanaan Maloklusi Gigi		5	Core Major	YES
+6	6	UKN200	KUM ITT		2	Elective	NO
+6	6	GKP201	Managemen		2	Elective	NO
+6	6	GBH616	Skripsi		2	Core Major	YES
+7	7	GGK711	Penatalaksanaan Kehilangan Gigi III		5	Core Major	YES
+7	7	GGK712	Penatalaksanaan Bedah Mulut Kompleks dan Implan		5	Core Major	YES
+7	7	GBH713	Sengketa Medik dan Pelanggaran Disiplin Kedokteran Gigi		5	Core Major	YES
+7	7	GGK714	Medically Compromise dan Kegawatdaruratan		5	Core Major	YES

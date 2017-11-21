@@ -1,0 +1,46 @@
+<style type="text/css">
+
+
+
+</style>
+ 
+<h2><?php echo $this->title;?></h2>
+<br>
+<form name="mahasiswa" method="post" >
+<table>
+	<input type="hidden" name="IdMhs" value="<?php echo $this->idmhs;?>">
+	<tr>
+		<td>NIM</td>
+		<td>:</td>
+		<td><input type="text" id="nim" name="nim" value="<?php echo $this->nim;?>" size="12"></td>
+	</tr>
+	<tr>
+		<td>NAMA MAHASISWA</td>
+		<td>:</td>
+		<td><input type="text" id="nama" name="nama" value="<?php echo $this->nama;?>" size="50"></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td>
+		<input type="submit" name="cari" id="cari" value="Cari">
+		<input type="submit" name="add" id="add" value="Add">
+		<input type="submit" name="del" id="del" value="Delete">
+		<input type="submit" name="update" id="update" value="Update">
+		</td>
+	</tr>
+</table>
+</form>
+<br>
+<table>
+<tr align="center" bgcolor="darkgrey"><td>NO</td><td>NIM</td><td>Nama Mahasiswa</td></tr>
+ <?php  
+		echo "<br>";
+		echo "<tr>";
+		$coun=1;
+		foreach ($this->listnama as $item) {
+			echo '<td>'.$coun.'</td><td>'.$item['Nim'].'</td><td>'.$item['Nama'].'</td></tr>';
+			$coun++;
+		} ?>
+		
+</table> 

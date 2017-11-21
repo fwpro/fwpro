@@ -1,0 +1,161 @@
+Core Basic	41	Yes										
+Core Major	91	Yes										
+Elective	12	No										
+xxxxx												
+1	IKB411	Konsep Teknologi Informasi dan Keamanan		4	Core Basic	YES		Common				
+1	IKH151	Praktikum Organisasi dan Arsitektur Komputer		1	Core Basic	YES		Common				
+1	IKH351	Organisasi dan Arsitektur Komputer		3	Core Basic	YES		Common				
+1	IKL135	Praktikum Dasar Pemrograman		1	Core Basic	YES		Common				
+1	IKL335	Dasar Pemrograman		3	Core Basic	YES		Common				
+1	IUM461	Struktur Diskrit I (MPK)		4	Core Basic	YES		Common				
+1	UBA402	Internasionalisasi 		4	Core Basic	YES		Common				
+2	IKB405	Penulisan Ilmiah dan Laporan 		4	Core Basic	YES		Common				
+2	IKH111	Praktikum Sistem Operasi		1	Core Basic	YES		Common				
+2	IKH113	Praktikum Jaringan Komputer dan  Keamanan 		1	Core Basic	YES		Common				
+2	IKH311	Sistem Operasi (MPK)		3	Core Basic	YES		Common		IKH351	1	
+2	IKH313	Jaringan Komputer dan Keamanan (MPK)		3	Core Basic	YES		Common		IKH351	1	
+2	IKL141	Praktikum Struktur Data dan Algoritma		1	Core Basic	YES		Common				
+2	IKL341	Struktur Data dan Algoritma		3	Core Basic	YES		Common		IKL335	0	C
+2	IKS413	Technopreneurship 		4	Core Basic	YES		Common				
+2	UKT101	Kuliah Kerja Lapangan		1	Core Basic	YES		Common				
+3	IKD112	Praktikum Manajemen Data dan Informasi		1	Core Major	YES	0641	Software Engineering 				
+3	IKD312	Manajemen Data dan Informasi (MPK)		3	Core Major	YES	0641	Software Engineering 		IKL341		
+3	IKH123	Praktikum Keamanan Informasi		1	Core Major	YES	0641	Software Engineering 				
+3	IKH323	Keamanan Informasi (MPK)		3	Core Major	YES	0641	Software Engineering 				
+3	IKS104	Praktikum Metode Berorientasi Objek		1	Core Major	YES	0641	Software Engineering 				
+3	IKS123	Praktikum Analisis dan Pemodelan Perangkat Lunak		1	Core Major	YES	0641	Software Engineering 				
+3	IKS301	Interaksi Manusia dan Komputer		3	Core Major	YES	0641	Software Engineering 				
+3	IKS304	Metode Berorintasi Objek (MPK)		3	Core Major	YES	0641	Software Engineering 		IKL341		
+3	IKS323	Analisis dan Pemodelan Perangkat Lunak (MPK)		3	Core Major	YES	0641	Software Engineering 		"IKL335, IUM461"	"0,0"	"C,C"
+3	IUM263	Struktur Diskrit II		2	Core Major	YES	0641	Software Engineering 		IUM461		
+4	IKP102	Praktikum Pemrograman Berbasis Komponen		1	Core Major	YES	0641	Software Engineering 				
+4	IKP111	Praktikum Pemrograman Berbasis Web		1	Core Major	YES	0641	Software Engineering 				
+4	IKP302	Pemrograman Berbasis Komponen		3	Core Major	YES	0641	Software Engineering 		IKS304		
+4	IKP311	Pemrograman Berbasis Web		3	Core Major	YES	0641	Software Engineering 		IKS304		
+4	IKS126	Praktikum Desain Perangkat Lunak		1	Core Major	YES	0641	Software Engineering 				
+4	IKS327	Desain Perangkat Lunak (MPK)		3	Core Major	YES	0641	Software Engineering 				
+4	ISM401	Manajemen Proyek Teknologi Informasi (MPK)		4	Core Major	YES	0641	Software Engineering 				
+4	UKW400	Pancasila dan Kewarganegaraan 		4	Core Major	YES	0641	Software Engineering 				
+5	IKB206	Kreativitas dan Innovasi		2	Core Major	YES	0641	Software Engineering 				
+5	IKB406	Metodologi Penelitian 		4	Core Major	YES	0641	Software Engineering 		IKB405		
+5	IKH331	Sistem Terdistribusi		3	Core Major	YES	0641	Software Engineering 		"IKH313, IKP302"		
+5	IKP103	Praktikum Mobile Programming		1	Core Major	YES	0641	Software Engineering 				
+7	IKP113	Praktikum Bahasa Pemrograman		1	Core Major	YES	0641	Software Engineering 				
+5	IKP303	Mobile Programming		3	Core Major	YES	0641	Software Engineering 		IKS304		
+5	IKS118	Praktikum Verifikasi dan Validasi Perangkat Lunak		1	Core Major	YES	0641	Software Engineering 				
+5	IKS318	Verifikasi dan Validasi  Perangkat Lunak (MPK)		3	Core Major	YES	0641	Software Engineering 		IKS327		
+5	ISM221	Ekonomi Informasi		2	Core Major	YES	0641	Software Engineering 				
+6	IKL343	Desain dan Analisis Algoritma		3	Core Major	YES	0641	Software Engineering 		IKL341		
+6	IKP321	Manajemen dan Kualitas Perangkat Lunak		3	Core Major	YES	0641	Software Engineering 				
+6	ISM403	"Etika, Agama, Profesionalisme, dan Legal"		4	Core Major	YES	0641	Software Engineering 				
+6	ISM404	Proyek Rekayasa		4	Core Major	YES	0641	Software Engineering 		"ISM401, IKB206, IKS318"	"0,1,0"	"C,0,C"
+7	IKB250	Kuliah Kerja Profesi		2	Core Major	YES	0641	Software Engineering 		ISM404		
+7	IKB450	Tugas Akhir I 		4	Core Major	YES	0641	Software Engineering 		ISM404		
+7	IKD313	Manajemen Data dan Informasi Lanjut		3	Core Major	YES	0641	Software Engineering 				
+7	IKD123	Praktikum Manajemen Data dan Informasi Lanjut		1	Core Major	YES	0641	Software Engineering 				
+7	IKP213	Bahasa Pemrograman		2	Core Major	YES	0641	Software Engineering 		IKP311		
+8	IKB451	Tugas Akhir II		4	Core Major	YES	0641	Software Engineering 		IKB450		
+6	IKA301	Kecerdasan Buatan		3	Elective	NO	0641	Software Engineering 				
+6	IKH314	Sistem Pengendalian Akses		3	Elective	NO	0641	Software Engineering 				
+6	IKH326	Perencanaan Kontinyuitas Bisnis		3	Elective	NO	0641	Software Engineering 				
+6	IKP333	Cloud Computing		3	Elective	NO	0641	Software Engineering 				
+6	ISD312	Information Retrieval		3	Elective	NO	0641	Software Engineering 				
+7	ISD313	Virtualisasi		3	Elective	NO	0641	Software Engineering 				
+7	ISD314	Teknik Data Mining		3	Elective	NO	0641	Software Engineering 				
+7	ISM312	Manajemen Pengetahuan		3	Elective	NO	0641	Software Engineering 				
+7	UKT300	KUM-ITT		3	Elective	NO	0641	Software Engineering 				
+7	ISM317	Manajemen Dokumen		3	Elective	NO	0641	Software Engineering 				
+3	IKD112	Praktikum Manajemen Data dan Informasi		1	Core Major	YES	0642	Information Security				
+3	IKD312	Manajemen Data dan Informasi 		3	Core Major	YES	0642	Information Security				
+3	IKH112	Praktikum Keamanan Sistem Operasi		1	Core Major	YES	0642	Information Security				
+3	IKH114	Praktikum Sistem Pengendalian Akses		1	Core Major	YES	0642	Information Security				
+3	IKH123	Praktikum Keamanan Informasi		1	Core Major	YES	0642	Information Security				
+3	IKH312	Keamanan Sistem Operasi		3	Core Major	YES	0642	Information Security		IKH311		
+3	IKH314	Sistem Pengendalian Akses (MPK)		3	Core Major	YES	0642	Information Security		IKH313		
+3	IKH323	Keamanan Informasi (MPK)		3	Core Major	YES	0642	Information Security				
+3	IUM314	Kalkulus		3	Core Major	YES	0642	Information Security				
+4	IKH109	Praktikum Pengelolaan Keamanan Informasi		1	Core Major	YES	0642	Information Security				
+4	IKH110	Praktikum Keamanan Jaringan Komputer		1	Core Major	YES	0642	Information Security				
+4	IKH128	Praktikum Forensik Komputer dan Jaringan		1	Core Major	YES	0642	Information Security				
+4	IKH309	Pengelolaan Keamanan Informasi (MPK)		3	Core Major	YES	0642	Information Security		IKH323		
+4	IKH310	Sistem Keamanan Jaringan 		3	Core Major	YES	0642	Information Security		"IKH313, IKH323"		
+4	IKH328	Forensik Komputer dan Jaringan (MPK)		3	Core Major	YES	0642	Information Security		"IKH313, IKH351"		
+4	ISM401	Manajemen Proyek Teknologi Informasi		4	Core Major	YES	0642	Information Security		IKS413		
+4	UKW400	Pancasila dan Kewarganegaraan		4	Core Major	YES	0642	Information Security				
+5	IKB206	Kreativitas dan Innovasi		2	Core Major	YES	0642	Information Security		IKS413		
+5	IKB406	Metodologi Penelitian 		4	Core Major	YES	0642	Information Security		IKB405		
+5	IKH143	Praktikum Analisis dan Pemodelan  Keamanan Informasi		1	Core Major	YES	0642	Information Security				
+5	IKH119	Praktikum Keamanan Operasional		1	Core Major	YES	0642	Information Security				
+5	IKH126	Praktikum Perencanaan Kontinyuitas Bisnis		1	Core Major	YES	0642	Information Security				
+5	IKH319	Keamanan Operasional		3	Core Major	YES	0642	Information Security				
+5	IKH326	Perencanaan Kontinyuitas Bisnis (MPK)		3	Core Major	YES	0642	Information Security				
+5	IKH343	Analisis dan Pemodelan Keamanan Informasi (MPK)		3	Core Major	YES	0642	Information Security		IKH309		
+5	ISM221	Ekonomi Informasi		2	Core Major	YES	0642	Information Security				
+6	IKH118	Praktikum Verifikasi & Validasi Keamanan Informasi		1	Core Major	YES	0642	Information Security				
+6	IKH318	Verifikasi dan Validasi  Keamanan Informasi (MPM)		3	Core Major	YES	0642	Information Security		IKH343 		
+6	IKH327	Keamanan Fisik		3	Core Major	YES	0642	Information Security				
+6	ISM403	"Etika, Agama, Profesionalisme, dan Legal"		4	Core Major	YES	0642	Information Security				
+6	ISM404	Proyek Rekayasa 		4	Core Major	YES	0642	Information Security		IKH343		
+7	IKB250	Kuliah Kerja Profesi		2	Core Major	YES	0642	Information Security		ISM404		
+7	IKB450	Tugas Akhir I 		4	Core Major	YES	0642	Information Security		ISM404		
+7	IKH309	Pengelolaan Jaringan Komputer		3	Core Major	YES	0642	Information Security		IKH313		
+7	IKH132	Praktikum Pengelolaan Jaringan Komputer		1	Core Major	YES	0642	Information Security				
+7	IKH314A	Keamanan Pengembangan Aplikasi		3	Core Major	YES	0642	Information Security		IKH323		
+8	IKB451	Tugas Akhir II 		4	Core Major	YES	0642	Information Security		IKB450		
+6	IKA301	Kecerdasan Buatan		3	Elective	NO	0642	Information Security				
+6	IKG321	Rekayasa Sistem Multimedia		3	Elective	NO	0642	Information Security				
+6	IKP333	Cloud Computing		3	Elective	NO	0642	Information Security				
+6	ISD312	Information Retrieval		3	Elective	NO	0642	Information Security				
+6	ISD313	Virtualisasi		3	Elective	NO	0642	Information Security				
+7	IKP321	Manajemen dan Kualitas Perangkat Lunak		3	Elective	NO	0642	Information Security				
+7	ISM312	Manajemen Pengetahuan		3	Elective	NO	0642	Information Security				
+7	ISM314	Audit Sistem Informasi		3	Elective	NO	0642	Information Security				
+7	UKT300	KUM-ITT		3	Elective	NO	0642	Information Security				
+3	IKD112	Praktikum Manajemen Data dan Informasi		1	Core Major	YES	0643	Computer Graphics				
+3	IKD312	Manajemen Data dan Informasi (MPK)		3	Core Major	YES	0643	Computer Graphics				
+3	IKH123	Praktikum Keamanan Informasi		1	Core Major	YES	0643	Computer Graphics				
+3	IKH323	Keamanan Informasi (MPK)		3	Core Major	YES	0643	Computer Graphics				
+3	IKS104	Praktikum Metode Berorientasi Objek		1	Core Major	YES	0643	Computer Graphics				
+3	IKS123	Praktikum Analisis dan Pemodelan Perangkat Lunak		1	Core Major	YES	0643	Computer Graphics				
+3	IKS301	Interaksi Manusia dan Komputer		3	Core Major	YES	0643	Computer Graphics				
+3	IKS304	Metode Berorintasi Objek		3	Core Major	YES	0643	Computer Graphics		IKL341		
+3	IKS323	Analisis dan Pemodelan Perangkat Lunak (MPK)		3	Core Major	YES	0643	Computer Graphics		"IKL335, IUM461"		
+3	IUM263	Struktur Diskrit II		2	Core Major	YES	0643	Computer Graphics		IUM461		
+4	IKG101	Praktikum Grafika Komputer		1	Core Major	YES	0643	Computer Graphics		IKL341		
+4	IKG401	Grafika Komputer (MPK)		4	Core Major	YES	0643	Computer Graphics		IKL341		
+4	IKH342	Pengolahan Sinyal Digital		3	Core Major	YES	0643	Computer Graphics		IUM263		
+4	IKS126	Praktikum Desain Perangkat Lunak		1	Core Major	YES	0643	Computer Graphics				
+4	IKS327	Desain Perangkat Lunak 		3	Core Major	YES	0643	Computer Graphics				
+4	ISM401	Manajemen Proyek Teknologi Informasi (MPK)		4	Core Major	YES	0643	Computer Graphics				
+4	UKW400	Pancasila dan Kewarganegaraan		4	Core Major	YES	0643	Computer Graphics				
+5	IKB206	Kreativitas dan Innovasi		2	Core Major	YES	0643	Computer Graphics				
+5	IKB406	Metodologi Penelitian 		4	Core Major	YES	0643	Computer Graphics		IKB405		
+5	IKG102	Praktikum Pengolahan Citra		1	Core Major	YES	0643	Computer Graphics		IKH342		
+5	IKG302	Pengolahan Citra		3	Core Major	YES	0643	Computer Graphics		IKH342		
+5	IKL133	Praktikum Pemodelan Geometri		1	Core Major	YES	0643	Computer Graphics		IKG401		
+5	IKL233	Pemodelan Geometri (MPK)		2	Core Major	YES	0643	Computer Graphics		IKG401		
+5	IKS118	Praktikum Verifikasi dan Validasi Perangkat Lunak		1	Core Major	YES	0643	Computer Graphics				
+5	IKS318	Verifikasi dan Validasi  Perangkat Lunak		3	Core Major	YES	0643	Computer Graphics		IKS327		
+5	ISM221	Ekonomi Informasi		2	Core Major	YES	0643	Computer Graphics				
+5	PDU212	Teori Warna		2	Core Major	YES	0643	Computer Graphics		IKP311		
+6	IKG121	Praktikum Rekayasa Sistem Multimedia		1	Core Major	YES	0643	Computer Graphics		IKS126		
+6	IKG321	Rekayasa Sistem Multimedia (MPK)		3	Core Major	YES	0643	Computer Graphics		IKS327		
+6	IKP321	Manajemen dan Kualitas Perangkat Lunak		3	Core Major	YES	0643	Computer Graphics				
+6	ISM403	"Etika, Agama, Profesionalisme, dan Legal"		4	Core Major	YES	0643	Computer Graphics				
+6	ISM404	Proyek Rekayasa		4	Core Major	YES	0643	Computer Graphics		"ISM401, IKB206, IKS318"		
+7	IKB250	Kuliah Kerja Profesi		2	Core Major	YES	0643	Computer Graphics		ISM404		
+7	IKB450	Tugas Akhir I 		4	Core Major	YES	0643	Computer Graphics		ISM404		
+7	IKD313	Manajemen Data dan Informasi Lanjut		3	Core Major	YES	0643	Computer Graphics				
+7	IKD113	Praktikum Manajemen Data dan Informasi Lanjut		1	Core Major	YES	0643	Computer Graphics				
+8	IKB451	Tugas Akhir II		4	Core Major	YES	0643	Computer Graphics		IKB450		
+6	IKA301	Kecerdasan Buatan		3	Elective	NO	0643	Computer Graphics				
+6	IKG311	Sistem Informasi Geografi		3	Elective	NO	0643	Computer Graphics				
+6	IKH314	Sistem Pengendalian Akses   		3	Elective	NO	0643	Computer Graphics				
+6	IKH326	Perencanaan Kontinyuitas Bisnis 		3	Elective	NO	0643	Computer Graphics				
+6	IKP333	Cloud Computing 		3	Elective	NO	0643	Computer Graphics				
+7	ISD312	Information Retrieval   		3	Elective	NO	0643	Computer Graphics				
+7	ISD314	Teknik Data Mining      		3	Elective	NO	0643	Computer Graphics				
+7	ISM312	Manajemen Pengetahuan   		3	Elective	NO	0643	Computer Graphics				
+7	UKT300	KUM-ITT 		3	Elective	NO	0643	Computer Graphics				
+7	IKG304	Seni Animasi		3	Elective	NO	0643	Computer Graphics				
+7	ISD305	Rekayasa Data dan Pengetahuan		3	Elective	NO	0643	Computer Graphics

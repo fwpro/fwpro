@@ -1,0 +1,22 @@
+ul.potato-menu li.potato-menu-item {
+	float:right;
+}
+#language{
+	left:10px;
+	position: absolute;
+	padding-top: 3px;
+}
+
+#appTitle{
+	left: 15px;
+	top: 25px;
+}
+
+#main-content{
+	margin-right: 200px;
+}
+
+div.toolbar-button {
+	float:left;
+	text-align: left;
+}

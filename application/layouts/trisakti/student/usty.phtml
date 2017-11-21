@@ -1,0 +1,205 @@
+<?php
+//get locale
+ $lobjsis = Zend_Registry::get('sis');
+
+$registry = Zend_Registry::getInstance();
+$locale = $registry->get('Zend_Locale');
+$this->locale = $locale->toString();
+$auth = Zend_Auth::getInstance();
+if($locale == 'ar_YE'){
+	$this->direction = "rtl";
+	$this->float = "right";
+	$locale = 'ar';
+}elseif($locale == 'en_US'){
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}else {
+	$this->direction = "ltr";
+	$this->float = "left";
+	$locale = 'en';
+}
+$this->gobjsessionsis = Zend_Registry::get('sis');
+?>
+<?php  echo $this->doctype(); ?>
+<!--[if IE]>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->locale; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+
+<!-- ///////////////////////// DOJO ////////////////////////// -->
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'<?php echo $locale;?>'"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_<?php echo $locale;?>.js"></script>
+<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/i18n.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/claro/EnhancedGrid.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/grid/enhanced/resources/Pagination.css" />
+<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojox/plugins/resources/css/LocalImage.css" />
+
+
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/layout.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/simpletree.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/topmenu.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/style.css'); ?>
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/usty/left-menu.css'); ?>
+<?php
+if($this->direction == 'rtl'){
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:right;
+				}";
+	echo "#language{
+	 				left:10px;
+					position: absolute;
+					padding-top: 3px;
+	 			}";
+
+	echo "#appTitle{
+	 				left: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-right: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:left;
+				text-align: left;
+				}";
+
+	echo "</style>";
+}else{
+	echo "<style>";
+	echo "ul.potato-menu li.potato-menu-item {
+	 				float:left;
+				}";
+	echo "#language{
+	 				right:10px;
+					position: absolute;
+					padding-top: 3px;
+	 			}";
+
+	echo "#appTitle{
+	 				right: 15px;
+					top: 25px;
+	 			}";
+
+	echo "#main-content{
+						margin-left: 200px;
+				}";
+
+	echo "div.toolbar-button {
+				float:right;
+				text-align: right;
+				}";
+
+	echo "</style>";
+}
+
+?>
+	<!--[if lt IE 7]>
+	<style media="screen" type="text/css">
+	#container {
+		height:100%;
+	}
+	.underlinemenu{
+		font-weight: none;
+		width: 70%;
+		padding-top: 3px;
+		}
+	 #topmenu{
+		position: absolute;
+		padding: 1px 250px 0px 0px;
+		height : 20px;
+	}	
+	
+	#language{
+		position: absolute;
+		padding: 3px 10px 0 10px;
+		height : 20px;
+	 }
+	</style>
+	<![endif]-->
+</head>
+<body class="claro">
+	<div id="container">
+		<div id="header">
+			<div id="logo"></div>
+			<div id="appTitle"><?php echo $this->translate(APPLICATION_TITLE);?></div>
+		</div>
+	
+		<div id="menu" style=""><?php $auth = Zend_Auth::getInstance();?>
+
+			<?php $gobjsessionsis = Zend_Registry::get('sis');?>
+			<div id="language">Welcome <?php echo $lobjsis->name;?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo $this->url(array('module'=>'default','controller'=>'studentlogin','action'=>'logout'),'default',true) ?>"><?php echo $this->translate("Logout"); ?></a></li>&nbsp;&nbsp;&nbsp;|&nbsp <?php echo $this->translate("Language"); ?>: 
+				<select style="width: 80px;" onchange="window.location = '?lang=' + this.options[this.selectedIndex].value">
+					<?php if($this->language == 1) {?>
+						<option value="ar"
+							<?php echo $this->locale=="ar_YE"?"selected='selected'":""; ?>>Arabic
+						</option>
+						<?php }?>
+						<option value="en"
+							<?php echo $this->locale=="en_US"?"selected='selected'":""; ?>>English
+						</option>
+						<?php if($this->language == 2) {?>
+						<option value="id"
+							<?php echo $this->locale=="id_ID"?"selected='selected'":""; ?>>Indonesia
+						</option>
+						<?php }?>
+				</select>
+			</div>
+			<div id="topmenu">
+				<div class="underlinemenu">
+					<ul>
+							<li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'studentlogin','action'=>'index'),'default',true) ?>"><?php echo $this->translate("Student-Information"); ?></a></li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="body">
+			<!-- Begin Section Content-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td rowspan="2" width="15%" valign="top">
+							<div id="vertmenu" orientation="vertical"
+  										style="width:200px; height:500px; border:0px solid #b7b7b7">
+								<ul>
+	
+											<li><h1><?php echo $this->translate("Student").' '.$this->translate("Information"); ?></h1></li>
+											<li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'studentlogin','action'=>'changepassword'),'default',true) ?>"><?php echo $this->translate("Change Password"); ?></a></li>
+											<li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'studentlogin','action'=>'academicresult'),'default',true) ?>"><?php echo $this->translate("Academic Result"); ?></a></li>											
+									        <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'studentlogin','action'=>'report'),'default',true) ?>"><?php echo $this->translate("Examination Slip"); ?></a></li>
+								</ul>
+								<br>
+							</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td valign="top">
+							<table width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<tr>
+										<td valign="top"><?php echo $this->layout()->content; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- End Section Content-->
+		</div>
+		<div id="footer"><!-- Footer start --> <?php echo $this->translate("Copyright"); ?>&copy;<?php echo $this->translate(APPLICATION_ENTERPRISE) ;?> 
+		<!-- Footer end --></div>
+	</div>
+</body>
+</html>

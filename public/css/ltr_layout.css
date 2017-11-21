@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+ul.potato-menu li.potato-menu-item {
+		float:left;
+}
+
+#language{
+	right:10px;
+	position: absolute;
+	padding-top: 3px;
+}
+
+#appTitle{
+	right: 15px;
+	top: 25px;
+}
+
+#main-content{
+	margin-left: 200px;
+}
+
+div.toolbar-button {
+	float:right;
+	text-align: right;
+}
+h5{
+	font-size: 1.2em;
+	margin: 10px 0 0 0;	
+}
+
+.group:after {
+    clear: both;
+}
+.group:before, .group:after {
+    content: "";
+    display: table;
+}
+
+#footer-boxes{
+	width: 98%;
+	margin: 10px 20px;	
+}
+
+.footer-box:after {
+    -moz-transition: all 0.2s ease 0s;
+    /*background-image: url("/wp-content/themes/CSS-Tricks-9/images/css-tricks.png");*/
+    content: "";
+    height: 130px;
+    left: 100%;
+    opacity: 1;
+    position: absolute;
+    top: 5px;
+    width: 100px;
+}
+.footer-box {
+    -moz-box-sizing: border-box;
+    background: none no-repeat scroll 0 0 padding-box #EEEEEE;
+    border: 8px solid transparent;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    color: #B2AAA4;
+    float: left;
+    height: 166px;
+    margin: 20px 2.7% 0 0;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 17%;
+}
+
+.footer-box:hover {
+    background: none no-repeat scroll 0 0 padding-box #E6E2DF;
+}
