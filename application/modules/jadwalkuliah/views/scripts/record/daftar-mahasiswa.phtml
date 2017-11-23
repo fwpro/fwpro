@@ -1,0 +1,115 @@
+<style type="text/css">
+
+
+
+</style>
+ <script>
+ function getMahasiswa(){
+	 
+		var idprogram= $("#IdProgram").val();
+		//alert(idprogram);
+		$.ajax({
+			url: "<?php echo $this->url(array('module'=>'akademik','controller'=>'record', 'action'=>'ajax-get-mahasiswa'),'default',true);?>",
+			data: {'idprogram':idprogram},
+			type: 'POST',
+			dataType: 'json'
+			 
+		}).done(function ( data ) {
+			 
+			$("#daftarmhs").empty().append('<tr bgcolor="grey" ><th>NIM</th><th>NAMA</th><th>Take</th></tr>');
+			
+			$.each(data, function(index) {
+				$("#daftarmhs").append('<tr><td>'+data[index].Nim+'</td><td> '+data[index].Nama+' </td><td><input type="checkbox" name="pa['+data[index].Nim+']" '+status+'> </td></tr>');
+			});
+		});
+	}
+
+ function getProgram(){
+	 
+		var idcollege= $("#IdCollege").val();
+		//alert(idprogram);
+		$.ajax({
+			url: "<?php echo $this->url(array('module'=>'akademik','controller'=>'record', 'action'=>'ajax-get-program'),'default',true);?>",
+			data: {'idcollege':idcollege},
+			type: 'POST',
+			dataType: 'json'
+			 
+		}).done(function ( data ) {
+			 
+			$("#IdProgram").empty().append('<option value="" ><?php echo "Pilih Program"?> </option>');
+			
+			$.each(data, function(index) {
+				$("#IdProgram").append('<option value="'+data[index].IdProgram+'" >'+data[index].NamaProgram+'</option>');
+			});
+		});
+	}
+ </script>
+ 
+<h2><?php echo $this->title;?></h2>
+<fieldset><legend><?php echo 'Cari'?></legend>
+<br>
+ 
+<table>
+<tr><td>Faculty</td>
+<td> 
+<select name="IdCollege" id="IdCollege" onchange="getProgram()">
+	<option value="" ><?php echo "Pilih fakultas"?> </option>
+	<?php  
+				foreach ($this->collegelist as $list):
+					$select = "";
+					if( isset($this->college) && $this->college==$list['IdCollege'] ){
+						$select = 'selected="selected"';
+					}
+				?>
+					<option value="<?php echo $list['IdCollege'];?>" <?php echo $select; ?>><?php echo $list['NamaCollege'];?></option>
+				<?php 
+				endforeach;
+				?>
+</select>
+</td>
+</tr>
+<tr><td>Program Studi</td>
+<td> 
+<select name="IdProgram" id="IdProgram" onchange="getMahasiswa()">
+	<option value="" ><?php echo "Pilih Prodi"?> </option>
+	<?php  
+				foreach ($this->programlist as $list):
+					$select = "";
+					if( isset($this->program) && $this->program==$list['IdProgram'] ){
+						$select = 'selected="selected"';
+					}
+				?>
+					<option value="<?php echo $list['IdProgram'];?>" <?php echo $select; ?>><?php echo $list['NamaProgram'];?></option>
+				<?php 
+				endforeach;
+				?>
+</select>
+</td>
+</tr>
+	 
+</table>
+</fieldset>
+ 
+<fieldset><legend><?php echo "Daftar Mahasiswa"?></legend>
+<form nama="dosenwali" methods="post">
+Dosen Wali :
+<select name="IdDosen" id="IdDosen">
+	<option value="" ><?php echo "Pilih Dosen"?> </option>
+	<?php  
+				foreach ($this->dosenlist as $list):
+					$select = "";
+					if( isset($this->dosenpa) && $this->dosenpa==$list['IdDosen'] ){
+						$select = 'selected="selected"';
+					}
+				?>
+					<option value="<?php echo $list['IdDosen'];?>" <?php echo $select; ?>><?php echo $list['Nama'];?></option>
+				<?php 
+				endforeach;
+				?>
+</select>
+<table id="daftarmhs" nama="daftarmahs"> 	
+</table>
+<input type="submit" name="save" value="Simpan">
+</form>
+</fieldset>
+ 

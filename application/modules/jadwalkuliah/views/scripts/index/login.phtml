@@ -1,0 +1,298 @@
+<?php 
+
+	//get locale
+	$registry = Zend_Registry::getInstance();
+	$locale = $registry->get('Zend_Locale');
+	$this->locale = $locale->toString();
+	
+	if($locale == 'ar_YE'){
+		$this->direction = "rtl";
+		$this->float = "right";	
+	}else{
+		$this->direction = "ltr";
+		$this->float = "left";
+	}
+?>
+<? echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->locale; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/layout.css'); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/login.css'); ?>
+	
+	<!-- 
+	<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/tabcontent.js" type="text/javascript"></script>
+	<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/JSCookMenu.js" type="text/javascript"></script>
+	<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/theme.js" type="text/javascript"></script>
+	<script language="JavaScript" src="<?php  echo $this->baseUrl();?>/js/register-alumni.js" type="text/javascript"></script>
+	 -->
+	 
+	<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/dojo.js" djConfig="parseOnLoad: true,locale:'en'"></script>
+	<script type="text/javascript" src="<?php  echo $this->baseUrl();?>/js/dojo/dojo/nls/dojo_en.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dijit/themes/claro/claro.css" />
+	<link rel="stylesheet" type="text/css" href="<?php  echo $this->baseUrl();?>/js/dojo/dojo/resources/dojo.css" />
+
+	<?php 
+	
+	
+	 	if($this->direction == 'rtl'){
+	 		
+	 		echo "<style>";
+	 		echo "ul.potato-menu li.potato-menu-item {
+	 				float:right;
+				}";
+	 		echo "#language{
+	 				left:10px;
+	 			}";
+	 		
+	 		echo "#appTitle{
+	 				left: 15px;
+					top: 25px;
+	 			}";
+	 		
+	 		echo "#main-content{
+						margin-right: 200px;
+				}";
+	 		
+		 	echo "div.toolbar-button {
+				float:left;
+				text-align: left;
+				}";
+		 	
+	 		echo "</style>";
+	 	}else{
+	 		
+	 		echo "<style>";
+	 		echo "ul.potato-menu li.potato-menu-item {
+	 				float:left;
+				}";
+	 		echo "#language{
+	 				right:10px;
+	 			}";
+	 		
+	 		echo "#appTitle{
+	 				right: 15px;
+					top: 25px;
+	 			}";
+
+	 		echo "#main-content{
+						margin-left: 200px;
+				}";
+	 		
+	 		echo "div.toolbar-button {
+				float:right;
+				text-align: right;
+				}";
+	 		
+	 		echo "</style>";
+	 	}
+	 
+	 ?>
+	 	
+	<!--[if lt IE 7]>
+	<style media="screen" type="text/css">
+	#container {
+		height:100%;
+	}
+	</style>
+	<![endif]-->
+	
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+
+		dijit.byId('username').focus();
+
+	});
+	var dialogBox = new dijit.Dialog;
+
+	function refreshpage() {
+		dialogBox.hide();
+		window.location.href = "<?php echo $this->baseUrl()."/application/manualapplication/studentapplicationlist/id/".$this->IdApplication?>";
+	}
+
+	function dialogText (title,content) {
+		<?php $iframeurl2 = "<iframe border = 0 width=480px height=85px src='".$this->baseUrl()."/forgotpassword'></iframe>";?>
+	    dialogBox.titleNode.innerHTML = title;
+	    dialogBox.setContent("<?php echo $iframeurl2 ?>");
+	    dialogBox.set("style", "width: 500px;height:150px;");
+	    dialogBox.show();
+	}
+	</script>
+	
+	<style type="text/css">
+		#body {
+			padding-bottom: 50px; /* Height of the footer */
+		}
+		
+		#footer {
+			height: 50px; /* Height of the footer */
+		}
+
+	.required {
+		font-weight: bold;
+		font-size: 11px;
+	}
+
+	.optional {
+		font-style: italic;
+	}
+
+	@media only screen and (device-width: 768px) {
+	  	#container{
+	  		width: 100%;
+		}
+		
+		#footer #fwrapper{
+			width: 300px;
+		}
+	}
+
+	
+
+	input[type=submit], button{
+		border-color:#EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+		border-style:solid;
+		border-width:1px;
+		color:#565656;
+		cursor:pointer;
+		display:block;
+		//float:left;
+		font-family:"Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+		font-size:100%;
+		font-weight:bold;
+		line-height:130%;
+		margin:2px 7px 2px 0;
+		padding:5px 10px 6px 7px;
+		text-decoration:none;
+	}
+	input[type=reset], button{
+		margin:5px 0;
+		background-color:#F5F5F5;
+		border-color:#EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+		border-style:solid;
+		border-width:1px;
+		color:#565656;
+		cursor:pointer;
+		display:block;
+		//float:left;
+		font-family:"Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+		font-size:100%;
+		font-weight:bold;
+		line-height:130%;
+		margin:2px 7px 2px 0;
+		padding:5px 10px 6px 7px;
+		text-decoration:none;
+	}
+	input[type=submit]:hover,  button:hover{
+		background-color:#E6EFC2;
+	}
+
+	</style>
+</head>
+<body class = "claro">
+
+<div id="container">
+	<div id="header">
+		<!-- Header start -->
+		<div id="logo"><div id="name">&nbsp;</div></div>
+		<div id="appTitle">
+			<?php echo APPLICATION_ENTERPRISE; ?>
+			<br />
+			<i><?php echo APPLICATION_TITLE; ?></i>
+		</div>
+	</div>
+	<div id="menu">
+		<div id="language">
+			<select style="width:100px;" onChange="window.location = '?lang=' + this.options[this.selectedIndex].value">
+				<option value="en" <?php echo $this->locale=="en_US"?"selected='selected'":""; ?>>English</option>
+				<option value="id" <?php echo $this->locale=="id_ID"?"selected='selected'":""; ?>>Bahasa Indonesia</option>
+			<!--	<option value="ar" <?php echo $this->locale=="ar_YE"?"selected='selected'":""; ?>>Arabic</option>-->
+			</select>
+		</div>
+	</div>
+		<!-- Header end -->
+	
+	<div id="body">
+		<!-- Begin Section Content-->
+		<div style="width:650px; height:250px; margin:10% auto 0;">
+			<?if(isset($this->alertError)){?>
+			<div class="message error"><strong><? echo $this->alertError;?></strong>.</div>
+			<br />
+			<?}?>
+			<form onreset="fnResetForm()" dojoType="dijit.form.Form" id="myform" name="myform" action = "/index/login" method= "post" >
+					<script type="dojo/method" event="onSubmit" >
+						if (this.validate()) {
+							return true;
+						} else {
+							return false;
+						}
+					</script>
+
+						<table align = "center" cellspacing="6px;">
+							<tr>
+								<td class = "required" align="right"> Username :</td>
+								<td class = "dataObjectStyle" >
+									<?php echo $this->lobjform->username;?>
+								</td>
+							</tr>
+							<tr>
+								<td class = "required" align="right">Password :</td>
+								<td class = "dataObjec	 <?php ////	Copyright &copy;echo APPLICATION_ENTERPRISE; ?>tStyle"><?php echo $this->lobjform->password;?></td>
+							</tr>
+							<tr>
+								<td class = "required" align="right">University&nbsp;:</td>
+								<td><?php echo $this->lobjform->IdUniversity;?></td>
+							</tr>
+
+							<tr>
+								<td align = "left"></td>
+								<td align = "left">
+									<?php echo $this->lobjform->Login; ?>
+									<?php echo $this->lobjform->Reset; ?>
+								</td>
+							</tr>
+							<tr>
+								<td align = "left"></td>
+								<td align = "left">
+									<a href="#" onclick="dialogText('Forgot Password')">
+										<span style="font-weight:bold;font-size:12px;color:#008000"><u>Forgot Password</u></span>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+								<br />
+								<br />
+								<br />
+								<div>
+									<div style="width:400px">
+										*<?php echo $this->translate("browser_recomendation");?>
+										<a href="//affiliates.mozilla.org/link/banner/31579" target="_BLANK"><img src="//affiliates.mozilla.org/media/uploads/banners/910443de740d4343fa874c37fc536bd89998c937.png" alt="Download: Fast, Fun, Awesome" /></a>
+									</div>
+								</div>
+								</td>
+							</tr>
+						</table>
+			</form>
+		</div>		
+		<!-- End Section Content-->
+	</div>
+	
+	<div id="footer">
+		<!-- Footer start -->
+		<div id="fwrapper" style="width: 1024px; margin: 0 auto;">
+			<div style="float:left; text-align: left; padding-top: 5px;">
+				Trisakti University<br />
+				Jalan Kyai Tapa No. 1 Grogol, Jakarta Barat, Indonesia<br />
+				Phone: (62-21) 566 3232 | Fax: (62-21) 564 4270	
+			</div>
+			<div align="right" style="text-align: right; padding-top: 18px;" >
+				Copyright &copy; <?php echo APPLICATION_ENTERPRISE; ?>. All rights reserved.
+			</div>
+		</div>
+		<!-- Footer end -->
+	</div>
+</div>
+</body>
+</html>
