@@ -35,8 +35,8 @@ class Mahasiswa_Model_DbTable_Mahasiswa extends Zend_Db_Table_Abstract {
     public function getData($data=null) {
         
         $select =$this->lobjDbAdpt->select()
-        ->from(array('a'=>$this->_nama));
-        
+        ->from(array('a'=>$this->_name));
+   
         if (isset($data['nimmhs'])) {
             if ($data['nimmhs']!=null) $select->where('a.NIM=?',$data['nimmhs']);
         }

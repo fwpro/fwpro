@@ -4,9 +4,10 @@ class Mahasiswa_MahasiswaController extends Zend_Controller_Action {
     public function mahasiswaAction() {
         //blok 1
         $this->view->nama="Kelompok 1";
-        $dbMhs = new Mahasiswa_Model_DbTable_mahasiswa();
+        $dbMhs = new Mahasiswa_Model_DbTable_Mahasiswa();
         $biodata=array();
         $biodatas=array();
+        $this->view->biodata=array();
         if ($this->getRequest ()->isPost ()) {
             //blok 2
             $data = $this->getRequest()->getPost();
@@ -49,9 +50,11 @@ class Mahasiswa_MahasiswaController extends Zend_Controller_Action {
             $biodata=array('NIM'=>$data['nimmhs'],'NAMA'=>$data['namamhs'],'ALAMAT'=>$data['alamatmhs'],'SEX'=>$data['sexmhs'],'PRODI'=>$data['prodimhs'],'AGAMA'=>$data['agamamhs'],'ANGKATAN'=>$data['angkatanmhs']);
         }
         //blok 3
-        $biodatas=$dbMhs->getData();
-        $this->view->biodatas=$biodatas;
         
+        $biodatas=$dbMhs->getData();
+       
+        $this->view->biodatas=$biodatas;
+      
     }
     
 }
