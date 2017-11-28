@@ -71,3 +71,6 @@ class Mahasiswa_Model_DbTable_Mahasiswa extends Zend_Db_Table_Abstract {
     }
     
 }
+
+
+//test

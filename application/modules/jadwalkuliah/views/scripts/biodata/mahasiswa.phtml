@@ -1,0 +1,31 @@
+
+
+<form name="biodata" id="biodata" method="post" action="">
+<table clas="table">
+<tr><th>Nama Mahasiswa</th><td>:</td>
+<td><input type="text" size="30" name="namamhs" id="namamhs" value="<?php echo $this->biodata[0]['Nama']?>">
+</td></tr>
+<tr><th>NIM</th><td>:</td>
+<td><input type="text" size="12" name="nim" id="nim" value="<?php echo $this->biodata[0]['Nim']?>">
+ <tr><th>Alamat</th><td>:</td><td><input type="text" size="12" name="alamat" id="alamat" value="<?php echo $this->biodata[0]['Alamat']?>">
+</td></tr>
+<tr><th></th><td></td><td>
+<input type="text" name="idmhs" value="<?php  echo $this->biodata[0]['Idmhs']?>">
+<input type="submit" name="Search" value="Search">
+<input type="submit" name="Save" value="Save">
+<input type="submit" name="delete" value="Delete">
+</td></tr>
+</table>
+
+</form>
+
+<table class="table" >
+<tr><th>NIM</th><th>Nama</th><th>Alamat</th></tr>
+<?php if ($this->biodatas!=array()) {
+foreach ($this->biodatas as $bio) {?>
+<tr><td><?php echo $bio['Nim']?></td>
+<td><?php echo $bio['Nama']?></td>
+<td><?php echo $bio['Alamat']?></td></tr>
+<?php }
+}?>
+</table>
