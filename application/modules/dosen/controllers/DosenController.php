@@ -1,10 +1,10 @@
 <?php
-class Tugas_DosenController extends Zend_Controller_Action {
+class Dosen_DosenController extends Zend_Controller_Action {
     
     public function dosenAction() {
         //blok 1
         $this->view->nama="Miqdad";
-        $dbDsn = new Tugas_Model_DbTable_Dosen();
+        $dbDsn = new Dosen_Model_DbTable_Dosen();
         $biodata=array();
         $biodatas=array();
         if ($this->getRequest ()->isPost ()) {

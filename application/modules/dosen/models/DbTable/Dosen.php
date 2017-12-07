@@ -1,5 +1,5 @@
 <?php
-class Tugas_Model_DbTable_Dosen extends Zend_Db_Table_Abstract {
+class Dosen_Model_DbTable_Dosen extends Zend_Db_Table_Abstract {
     /**
      * The default table name
      */
