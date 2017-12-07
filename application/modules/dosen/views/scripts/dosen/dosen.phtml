@@ -1,0 +1,80 @@
+<form name="biodata" id="biodata" method="post" action="">
+
+<table class="table">
+	<tr>
+		<th> Nama Dosen </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="namadsn" id="namadsn" value="<?php echo $this->biodata["0"]['nama']?>"> </td>
+	</tr>
+	<tr>
+		<th> NIK </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="nikdsn" id="nikdsn" value="<?php echo $this->biodata["0"]["nik"]?>"></td>
+	</tr>
+	<tr>
+		<th> Alamat</th>
+		<td> : </td>
+		<td> <input type="text" size="20" name="alamatdsn" id="alamatdsn" value="<?php echo $this->biodata["0"]["alamat"]?>"></td>
+			
+	</tr>
+	<tr>
+		<th> Sex </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="sexdsn" id="sexdsn" value="<?php echo $this->biodata["0"]["sex"]?>"></td>
+	</tr>
+	<tr>
+		<th> Agama </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="agamadsn" id="agamadsn" value="<?php echo $this->biodata["0"]["agama"]?>"></td>
+	</tr>
+	<tr>
+		<th> Tanggal Lahir </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="tgldsn" id="tgldsn" value="<?php echo $this->biodata["0"]["tgl_lahir"]?>"></td>
+		
+		
+		
+	</tr>
+	<tr>
+		<th> Tempat Lahir </th>
+		<td> : </td>
+		<td> <input type="text" size="30" name="tempatdsn" id="tempatdsn" value="<?php echo $this->biodata["0"]["tempat_lahir"]?>"></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td></td>
+		<td> <center> 
+			<input type="hidden" name="iddsn" value="<?php echo $this->biodata['0']['nik']?>">
+			<input type="submit" name="Search" value="Search">
+			<input type="submit" name="Save" value="Save"> 
+			<input type="submit" name="delete" value="Delete"> </center> </td>
+	</tr>
+</table>
+</form>
+
+<br>
+<table class="table">
+	<tr>
+		<th> Nama Dosen</th>
+		<th> NIK </th>
+		<th> Alamat </th>
+		<th> Sex </th>
+		<th> Agama </th>
+		<th> Tanggal Lahir </th>
+		<th> Tempat Lahir </th>
+	</tr>
+	
+	<?php if ($this->biodatas!=array()) {
+	    foreach ($this->biodatas as $bio) {?>
+	<tr>
+		<td> <?php echo $bio['nik']?> </td>
+		<td> <?php echo $bio['nama']?> </td>
+		<td> <?php echo $bio['alamat']?> </td>
+		<td> <?php echo $bio['sex']?> </td>
+		<td> <?php echo $bio['agama']?> </td>
+		<td> <?php echo $bio['tgl_lahir']?> </td>
+		<td> <?php echo $bio['tempat_lahir']?> </td>
+	</tr>
+	<?php } ?>
+<?php }?>
+</table>
